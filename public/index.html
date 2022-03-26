@@ -9,25 +9,67 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
   </head>
   <body id="background">
-    <div class="w3-main w3-content w3-padding" style="margin-left: 64px; margin-right: 256px; max-width: 4096px">
+    <!-- Main Page -->
+    <div class="w3-main w3-padding">
       <div class="w3-row-padding w3-center" style="padding-top: 64px">
-        <div class="w3-quarter">
-          <img src="./static/wallet border.png" alt="Steak" width="420px" />
+        <div class="w3-quarter w3-mobile" style="width: 30%; position: relative">
+          <img src="./static/wallet border.png" alt="Steak" width="100%" />
+          <div style="position: absolute; left: 0px; top: 0px; width: 100%">
+            <div class="w3-container w3-center">
+              <p class="w3-third" style="width: 70%; color: whitesmoke; font-size: large">Wallet</p>
+              <img class="w3-third" src="./static/Tokens.png" alt="Steak" style="width: 7%" />
+              <p class="w3-third" style="width: 23%; color: whitesmoke; font-size: large">???</p>
+            </div>
+          </div>
+          <div style="position: absolute; left: 0px; top: 36px; width: 100%">
+            <div class="w3-container w3-center">
+              <p class="w3-half" style="width: 70%; color: whitesmoke; font-size: large">0x2451...5861</p>
+              <p class="w3-half" style="width: 7%"></p>
+              <p class="w3-half" style="width: 23%; color: whitesmoke; font-size: large">???</p>
+            </div>
+          </div>
         </div>
-        <div class="w3-half" style="height: 128px"></div>
-        <div class="w3-quarter">
-          <img src="./static/SVG Logo.png" alt="Steak" width="420px" />
+        <div class="w3-half w3-mobile" style="height: 128px; width: 40%"></div>
+        <div class="w3-quarter w3-mobile" style="width: 30%">
+          <img src="./static/SVG Logo.png" alt="Steak" width="100%" />
         </div>
       </div>
       <div class="w3-row-padding w3-center" style="padding-top: 12px">
-        <div class="w3-quarter">
-          <img src="./static/Bars.png" alt="Steak" width="420px" />
+        <div class="w3-quarter w3-mobile" style="width: 30%">
+          <img src="./static/Bars.png" alt="Steak" width="100%" />
         </div>
-        <div class="w3-half" style="height: 128px"></div>
-        <div class="w3-quarter">
-          <img src="./static/announcement board.png" alt="Steak" width="420px" />
+        <div class="w3-half w3-mobile" style="height: 128px; width: 40%"></div>
+        <div class="w3-quarter w3-mobile" style="width: 30%; position: relative">
+          <img src="./static/announcement board.png" alt="Steak" width="100%" />
+          <div style="position: absolute; left: 0px; top: 5px; width: 100%; height: 96%">
+            <marquee
+              class="w3-center"
+              behavior="scroll"
+              direction="up"
+              scrollamount="2"
+              style="padding-left: 10px; padding-right: 10px; color: whitesmoke; font-size: inherit; height: 100%"
+            >
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+              Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+              ultricies nec, pellentesque eu, pretium quis, sem.
+            </marquee>
+          </div>
         </div>
       </div>
     </div>
+    <!-- Main Page -->
+    <!-- Footer -->
+    <div class="w3-container w3-center">
+      <div class="w3-quarter w3-mobile" style="height: 10px; width: 20%"></div>
+      <div class="w3-half w3-mobile" style="width: 60%">
+        <img src="./static/music.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
+        <img src="./static/discord.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
+        <img src="./static/twitter.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
+      </div>
+      <div class="w3-quarter w3-mobile" style="height: 10px; width: 20%">
+        <p class="w3-right" style="color: yellow; font-size: x-large">V1.0</p>
+      </div>
+    </div>
+    <!-- Footer -->
   </body>
 </html>
