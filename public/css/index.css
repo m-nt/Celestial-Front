@@ -4,3 +4,34 @@
   background-attachment: fixed;
   background-size: cover;
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+@font-face {
+  font-family: Evil_Bible;
+  src: url("../fonts/Evil_Bible.ttf");
+}
+p {
+  color: whitesmoke;
+  font-family: Evil_Bible;
+  font-size: 4vw;
+}
+marquee {
+  font-family: Evil_Bible;
+  font-size: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .mobile-extend {
+    height: 420px !important;
+  }
+  .mobile-shrink {
+    height: 128px !important;
+  }
+  p {
+    color: whitesmoke;
+    font-family: Evil_Bible;
+    font-size: 10vw !important;
+  }
+}
