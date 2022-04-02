@@ -4,6 +4,15 @@
   background-attachment: fixed;
   background-size: cover;
 }
+.custom {
+  /* The second value here is a fallback. */
+  cursor: url(../static/MouseCursor.png), auto;
+
+  /* You may need coordinates to adjust the pointer
+     for example, the custom cursor is circular and you want
+     the middle to be where you click */
+  /*cursor: url(target.svg) 15 15, move;*/
+}
 html,
 body {
   height: 100%;
