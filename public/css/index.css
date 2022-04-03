@@ -25,7 +25,7 @@ body {
 p {
   color: whitesmoke;
   font-family: Evil_Bible;
-  font-size: 4vw;
+  font-size: 3vw;
 }
 marquee {
   font-family: Evil_Bible;
@@ -41,6 +41,6 @@ marquee {
   p {
     color: whitesmoke;
     font-family: Evil_Bible;
-    font-size: 10vw !important;
+    font-size: 9vw !important;
   }
 }
