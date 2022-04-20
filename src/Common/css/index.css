@@ -1,0 +1,57 @@
+#backgroundHome {
+  background-image: url("../static/Background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+}
+.custom {
+  /* The second value here is a fallback. */
+  cursor: url(../static/MouseCursor.png), auto;
+
+  /* You may need coordinates to adjust the pointer
+     for example, the custom cursor is circular and you want
+     the middle to be where you click */
+  /*cursor: url(target.svg) 15 15, move;*/
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+@font-face {
+  font-family: Evil_Bible;
+  src: url("../fonts/Evil_Bible.ttf");
+}
+p {
+  color: whitesmoke;
+  font-family: Evil_Bible;
+  font-size: 3vw;
+}
+marquee {
+  font-family: Evil_Bible;
+  font-size: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .mobile-extend {
+    height: 420px !important;
+  }
+  .mobile-shrink {
+    height: 128px !important;
+  }
+  p {
+    color: whitesmoke;
+    font-family: Evil_Bible;
+    font-size: 9vw !important;
+  }
+}
+.menuitem:hover {
+  color: #f8fe80;
+}
+.menuitem-Deactive{
+  color: #bcbcbc;
+  cursor: text!important;
+}
+.cursor-pointer{
+cursor: pointer;
+}
