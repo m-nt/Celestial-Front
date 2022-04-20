@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.67633010.css",
+    "main.js": "/static/js/main.ce30e22a.js",
+    "static/js/787.8fcdf523.chunk.js": "/static/js/787.8fcdf523.chunk.js",
+    "static/media/Background.jpg": "/static/media/Background.7196468e3967948fbf6c.jpg",
+    "static/media/Evil_Bible.ttf": "/static/media/Evil_Bible.772c044d3707f75629ba.ttf",
+    "index.html": "/index.html",
+    "main.67633010.css.map": "/static/css/main.67633010.css.map",
+    "main.ce30e22a.js.map": "/static/js/main.ce30e22a.js.map",
+    "787.8fcdf523.chunk.js.map": "/static/js/787.8fcdf523.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67633010.css",
+    "static/js/main.ce30e22a.js"
+  ]
+}
