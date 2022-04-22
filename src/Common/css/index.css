@@ -4,6 +4,7 @@
   background-attachment: fixed;
   background-size: cover;
   height: 100%;
+
 }
 .custom {
   /* The second value here is a fallback. */
@@ -44,10 +45,14 @@ marquee {
     font-family: Evil_Bible;
     font-size: 9vw !important;
   }
+ 
 }
-.menuitem:hover {
+.menuitemHover:hover {
   color: #f8fe80;
+  transition: 1s ease;
 }
+
+
 .menuitem-Deactive{
   color: #bcbcbc;
   cursor: text!important;

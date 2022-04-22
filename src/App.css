@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ .position-absolute{
+   position:absolute
+ }
+ .d-flex{
+   display: flex;
+ }
+ .flex-column{
+   display: flex;
+   flex-direction: column;
+ }
+ .justify-content-center{
+   justify-content: center;
+ }
+ .align-items-center{
+   align-items: center;
+ }
+ .flex-center{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+ }
+ .w-100{
+   width: 100%;
+ }
+ .justify-content-between{
+   justify-content: space-between;
+ }
+
+ .w-86{
+  width: 86%;
+}
+.h-20vh{
+  height: 20vh;
+}
+.h-90vh{
+  height: 90vh;
+}
+.mainContainer{
+  height: 100%;
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px
+}
+.shadow-dark-box{
+  box-shadow: 0  0 3px 4px rgba(30,30,30,0.48)
 }
 
-.App-link {
-  color: #61dafb;
+.horizontal-scrolling {
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+}
+.vertical-scrolling {
+  height: 100%;
+  overflow: auto;
+  white-space: nowrap;
+ }
+.overFlow-auto{
+  overflow:auto;
+}
+.overFlow-x-auto{
+  overflow-x:auto;
+}.overFlow-y-auto{
+  overflow-y:auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-ellipsis{
+ 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ 
+
+
+}
+.centered-axis-xy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.centered-axis-x {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.containerHeight{
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.restHeight{
+  flex-grow : 1;
+}
+.restHeight::-webkit-scrollbar {
+  display: none;
+}
+.headerTitle{
+  font-size: 18px ;
+ 
+  font-weight: 300;
+  margin: 10px 0;
+
+}
+.min-h-100vh{
+  min-height: 100vh;
 }

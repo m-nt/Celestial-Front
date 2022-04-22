@@ -1,0 +1,89 @@
+#backgroundMint {
+    background-image: url("../../Common/static/mint/Background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .imageCharacterAnjel{
+      width: 23%;
+      height: 30%;
+     
+  }
+  .imageCharacterDemon{
+      width: 8.5vw;
+      height: 30%;
+     
+  }
+  .progressBarInside{
+    background-image: url("../../Common/static/mint/GaugeBG.png");
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+     background-size: 100% 100%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-origin: content-box;
+  }
+
+  .mintBorderText{
+    color: whitesmoke;
+    font-weight: 600;
+    font-size: 2.5vw;
+    background-image: url("../../Common/static/mint//MintBorder.png");
+    background-size: 100% 100%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+  padding:  10px;
+  }
+  .heightprogress{
+    height: 80px;
+    }
+    @media only screen and (max-width: 600px) {
+        .heightprogress{
+      height: 20px;
+      }
+      .mintBorderText{
+        color: whitesmoke;
+ 
+        font-size: 3.5vw !important;
+      }
+    
+    }
+
+    
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+      .heightprogress{
+        height: 48px;
+        }
+    }
+    
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+      .heightprogress{
+        height: 48px;
+        }
+    }
+    
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+      .heightprogress{
+        height: 67px;
+        }
+    }
+    
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+      .heightprogress{
+        height: 80px;
+        }
+    }
+    @media only screen and (min-width: 2000px) {
+        .heightprogress{
+          height: 120px;
+          }
+      }
+

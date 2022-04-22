@@ -9,8 +9,8 @@ import { Route } from 'react-router-dom';
 function App() {
   return (
     <>
-    <Helmet titleTemplate="CELESTIAL" defaultTitle="CELESTIAL">
-      <meta name="description" content="This is CELESTIAL" />
+    <Helmet titleTemplate="Celestial Verse" defaultTitle="Celestial Verse">
+      <meta name="description" content="This is Celestial Verse" />
     </Helmet>
     
     <Routes>

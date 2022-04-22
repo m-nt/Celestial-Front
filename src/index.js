@@ -8,6 +8,7 @@ import "./Common/css/index.css";
 // import 'animate.css';
 // import 'antd'
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from "react-router-dom";

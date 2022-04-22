@@ -1,17 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.67633010.css",
-    "main.js": "/static/js/main.ce30e22a.js",
+    "main.css": "/static/css/main.1dfc15f7.css",
+    "main.js": "/static/js/main.b5a57b7c.js",
     "static/js/787.8fcdf523.chunk.js": "/static/js/787.8fcdf523.chunk.js",
-    "static/media/Background.jpg": "/static/media/Background.7196468e3967948fbf6c.jpg",
+    "static/media/MiniAngel.png": "/static/media/MiniAngel.8330d98aab378ac76526.png",
+    "static/media/Background.jpg": "/static/media/Background.a4b0bafed5118cb82c38.jpg",
+    "static/media/MiniDemon.png": "/static/media/MiniDemon.f31d928193885fbbbd3e.png",
+    "static/media/Gauge.png": "/static/media/Gauge.4196d3b5239373891afb.png",
     "static/media/Evil_Bible.ttf": "/static/media/Evil_Bible.772c044d3707f75629ba.ttf",
+    "static/media/SummonButtonText.png": "/static/media/SummonButtonText.364b8e329af1e8e4b07a.png",
+    "static/media/GaugeBG.png": "/static/media/GaugeBG.6a475d0b3a7a6c2788a1.png",
     "index.html": "/index.html",
-    "main.67633010.css.map": "/static/css/main.67633010.css.map",
-    "main.ce30e22a.js.map": "/static/js/main.ce30e22a.js.map",
+    "main.1dfc15f7.css.map": "/static/css/main.1dfc15f7.css.map",
+    "main.b5a57b7c.js.map": "/static/js/main.b5a57b7c.js.map",
     "787.8fcdf523.chunk.js.map": "/static/js/787.8fcdf523.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.67633010.css",
-    "static/js/main.ce30e22a.js"
+    "static/css/main.1dfc15f7.css",
+    "static/js/main.b5a57b7c.js"
   ]
 }

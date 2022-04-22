@@ -1,45 +1,62 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import { pageName } from "../../utility/Conts"
+const ImgSocialMedia=({to,hoverImg,mainImg})=>{
+  let [hover, setHover] = useState(false)
+  return(
+<Link to={to}> <img src={`./static/${hover?hoverImg:mainImg}`} alt="Steak" width="60px"
+ onMouseEnter={() => setHover(true)}
+ onMouseLeave={() => setHover(false)}
+  /></Link>
+  )
+}
+
+function Home() {
+  let [disabale, setDisable] = useState(true)
 
  
-function  Home () {
-  let [disabale,setDisable]=useState(true)
-    return(
-        <body id="backgroundHome">
-        {/* <!-- Main Page --> */}
-        <div class="w3-main w3-padding" style={{height: "90% "}}>
-          <div class="w3-row-padding w3-center" style={{paddingTop:"64px"}}>
-            {/* <!-- Wallet Connection --> */}
-            <div class="w3-quarter w3-mobile" style={{width: "30%", position: "relative"}}>
-              <img src="./static/Metamask.png" alt="Steak" width="100%" />
-              <div style={{position: "absolute", left: "3.5%", top: "70%"}}>
-                <img src="./static/Bars.png" alt="Steak" style={{width: "100%" }}/>
-                <p className={disabale?"menuitem-Deactive":"menuitem cursor-pointer"} style={{position: "absolute", left: "32%", top: "4%"}} onclick="alert('hello')">Minting</p>
-                <p className={"menuitem cursor-pointer"} style={{position:"absolute", left: "16%", top: "26%" }}onclick="alert('hello')">Soul hunt(stake)</p>
-                <p className={"menuitem cursor-pointer"} style={{position: "absolute",left: "18%",  top: "48%"}} onclick="alert('hello')">Ascension well</p>
-                <p className={"menuitem cursor-pointer"} style={{position:"absolute", left: "24%", top: "70%"}} onclick="alert('hello')">Whitepaper</p>
-              </div>
-            </div>
-            {/* <!-- Wallet Connection --> */}
-            <div class="w3-half w3-mobile mobile-extend" style={{width: "40%"}}> &nbsp;</div>
-            {/* <!-- LOGO --> */}
-            <div class="w3-quarter w3-mobile" style={{width: "30%"}}>
-              <img src="./static/SVG Logo.png" alt="Steak" width="100%" />
-            </div>
-            {/* <!-- LOGO --> */}
+
+  return (
+    <body id="backgroundHome">
+      {/* <!-- Main Page --> */}
+      <div class="w3-main w3-padding" style={{ height: "90% " }}>
+        <div class="w3-row-padding w3-center" style={{ paddingTop: "64px" }}>
+          {/* <!-- Wallet Connection --> */}
+          <div class="w3-quarter w3-mobile" style={{ width: "30%", position: "relative" }}>
+            <img src="./static/Metamask.png" alt="Steak" width="100%" />
+            <div style={{ position: "absolute", left: "3.5%", top: "70%" }}>
+              <img src="./static/Bars.png" alt="Steak" style={{ width: "100%" }} />
+              <Link to={ pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
+              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
+              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link>
+              <a href={"https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf"}  target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "24%", top: "70%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>
+              {/* <a href="#" onclick={()=>{
+
+window.open('https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf', '_blank', 'fullscreen=yes');  return false
+              }  } className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "24%", top: "70%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a> */}
+             </div>
           </div>
-          <div class="w3-row-padding w3-center" style={{paddingTop: "12px"}}>
-            {/* <!-- Bars --> */}
-            <div class="w3-quarter w3-mobile mobile-shrink" style={{width: "30%"}}>
-              {/* <!-- <img src="./static/Bars.png" alt="Steak" width="100%" /> --> */}
-              {/* &nbsp */}
-            </div>
-            {/* <!-- Bars --> */}
-            <div class="w3-half w3-mobile" style={{width: "68%"}}> &nbsp; </div>
-            {/* <!-- Announcement --> */}
-            <div class="w3-quarter w3-mobile" style={{width: "30%", position: "relative"}}>
-              <img src="./static/announcement board.png" alt="Steak" width="100%" />
-              <div style={{position: "absolute", left: "0px", top: "5px", width: "100%", height: "96%"}}>
-                {/* <!-- <marquee
+          {/* <!-- Wallet Connection --> */}
+          <div class="w3-half w3-mobile mobile-extend" style={{ width: "40%" }}> &nbsp;</div>
+          {/* <!-- LOGO --> */}
+          <div class="w3-quarter w3-mobile" style={{ width: "30%" }}>
+            <img src="./static/SVG Logo.png" alt="Steak" width="100%" />
+          </div>
+          {/* <!-- LOGO --> */}
+        </div>
+        <div class="w3-row-padding w3-center" style={{ paddingTop: "12px" }}>
+          {/* <!-- Bars --> */}
+          <div class="w3-quarter w3-mobile mobile-shrink" style={{ width: "30%" }}>
+            {/* <!-- <img src="./static/Bars.png" alt="Steak" width="100%" /> --> */}
+            {/* &nbsp */}
+          </div>
+          {/* <!-- Bars --> */}
+          <div class="w3-half w3-mobile" style={{ width: "68%" }}> &nbsp; </div>
+          {/* <!-- Announcement --> */}
+          <div class="w3-quarter w3-mobile" style={{ width: "30%", position: "relative" }}>
+            <img src="./static/announcement board.png" alt="Steak" width="100%" />
+            <div style={{ position: "absolute", left: "0px", top: "5px", width: "100%", height: "96%" }}>
+              {/* <!-- <marquee
                   class="w3-center"
                   behavior="scroll"
                   direction="up"
@@ -50,29 +67,32 @@ function  Home () {
                   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
                   ultricies nec, pellentesque eu, pretium quis, sem.
                 </marquee> --> */}
-                <p class="w3-center" style={{paddingTop:"10px", paddingRight: "10px", fontSize:"2vw"}}>
-                  Look forward for updates!
-                </p>
-              </div>
+              <p class="w3-center" style={{ paddingTop: "10px", paddingRight: "10px", fontSize: "2vw" }}>
+                Look forward for updates!
+              </p>
             </div>
-            {/* <!-- Announcement --> */}
           </div>
+          {/* <!-- Announcement --> */}
         </div>
-        {/* <!-- Main Page -->
+      </div>
+      {/* <!-- Main Page -->
         <!-- Footer --> */}
-        <div class="w3-container w3-center" style={{height:" 10% !important"}}>
-          <div class="w3-quarter w3-mobile" style={{height: "10px",width: "20%"}}></div>
-          <div class="w3-half w3-mobile" style={{width:" 60%"}}>
-            <img src="./static/music.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
-            <img src="./static/discord.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
-            <img src="./static/twitter.png" alt="Steak" width="60px" onclick="alert('Hello world!')" />
-          </div>
-          <div class="w3-quarter w3-mobile" style={{  width: "20%"}}>
-            <p class="w3-right" style={{color: "yellow", fontSize: "x-large"}}>V1.0</p>
-          </div>
+      <div class="w3-container w3-center" style={{ height: " 10% !important" }}>
+        <div class="w3-quarter w3-mobile" style={{ height: "10px", width: "20%" }}></div>
+        <div class="w3-half w3-mobile" style={{ width: " 60%" }}>
+
+        <ImgSocialMedia to={'#'} hoverImg={'TwitterHover.png'} mainImg={'twitter.png'}/>  
+        <ImgSocialMedia to={'#'} hoverImg={'NFTradeHover.png'} mainImg={'NFTrade.png'}/>  
+        <ImgSocialMedia to={'#'} hoverImg={'DiscordHover.png'} mainImg={'discord.png'}/>  
+     
         </div>
-        {/* <!-- Footer --> */}
-      </body>
-    )
-    }
-    export default  Home
+        <div class="w3-quarter w3-mobile" style={{ width: "20%" }}>
+          <p class="w3-right" style={{ color: "yellow", fontSize: "x-large" }}>V1.0</p>
+        </div>
+      </div>
+      {/* <!-- Footer --> */}
+    </body>
+  )
+}
+export default Home
+
