@@ -6,6 +6,14 @@
   height: 100%;
 
 }
+#backgroundStack {
+  background-image: url("../static/BackgroundStaked.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+
+}
 .custom {
   /* The second value here is a fallback. */
   cursor: url(../static/MouseCursor.png), auto;

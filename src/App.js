@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <Helmet titleTemplate="Celestial Verse" defaultTitle="Celestial Verse">
-      <meta name="description" content="This is Celestial Verse" />
+      <meta name="description" content="Welcome to Celestial Verse, a fresh and exciting GameFi on avalanche!!" />
     </Helmet>
     
     <Routes>
