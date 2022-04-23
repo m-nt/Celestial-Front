@@ -29,8 +29,9 @@ function Home() {
               <Link to={ disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link>
-              <a href={"https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf"}  target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "24%", top: "70%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>
-        
+              {/* <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link> */}
+              {/* <a href={"https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf"}  target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "24%", top: "70%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a> */}
+              <Link to={"https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf"}    target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "71%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></Link>
              </div>
           </div>
           {/* <!-- Wallet Connection --> */}
@@ -84,7 +85,7 @@ function Home() {
      
         </div>
         <div class="w3-quarter w3-mobile" style={{ width: "20%" }}>
-          <p class="w3-right" style={{ color: "yellow", fontSize: "x-large" }}>V1.0</p>
+          <p class="w3-right" style={{margin:"0px 10px 0px 0px" , color: "yellow", fontSize: "x-large" }}>V1.0</p>
         </div>
       </div>
       {/* <!-- Footer --> */}
