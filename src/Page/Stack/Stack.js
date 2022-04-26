@@ -1,23 +1,55 @@
+import ProgressMenu from "../../../src/Common/Components/StackComponents/ProgressMenu"
+import StakedMenu from "../../../src/Common/Components/StackComponents/StakedMenu"
+import UnStakedMenu from "../../Common/Components/StackComponents/UnStakedMenu"
 import Blue from './../../Common/static/Buttons/ButtonBlue.png'
+import redNoSelect from './../../Common/static/Buttons/ButtonRedOff.png'
+import redSelect from './../../Common/static/Buttons/ButtonRedOn.png'
+import {useState} from "react";
 
+function Stack() {
+    const [ActivatedCm, SetActivatedCm] = useState("Staked")
 
+    let DataArray = [
+        {
+            bgImg: Blue,
+            text: "Menu"
+        },
+        {
+            bgImg: ActivatedCm === "Staked" ? redSelect : redNoSelect,
+            text: "Staked"
+        },
+        {
+            bgImg: ActivatedCm === "Un-Staked" ? redSelect : redNoSelect,
+            text: "Un-Staked"
+        },
+        {
+            bgImg: ActivatedCm === "Progress" ? redSelect : redNoSelect,
+            text: "Progress"
+        }
 
-function  Stack () {
-    return(
-        <body id="backgroundStack">
-            <div className="d-flex 'position-relative">
-
-                <div className='position-relative  '>
-                     <img src={Blue} alt="Blue"/>
-                     <span className='position-absolute centered-axis-xy' style={{fontSize:"4vw",color:"#fff"}} >Menu</span>
-                  
-                </div>
-             
-                {/* <button style={{backgroundImage: `url(${Blue})`}} className='bg-cover'><p>Menu</p></button> */}
- 
+    ]
+    return (
+        <div id="backgroundStack">
+            <div className="d-flex menuStake">
+                {
+                    DataArray.map((item) =>
+                        <div className='MenuItemBtn'
+                             onClick={() => item.text !== "Menu" ? SetActivatedCm(item.text) : ""}>
+                            <img src={item.bgImg} alt="Blue" width="100%"/>
+                            <span className='centered-axis-xy'>{item.text}</span>
+                        </div>
+                    )
+                }
             </div>
 
-       </body>
+            <div style={{padding: "0 20px 0 20px"}}>
+                {ActivatedCm === "Staked" && (<StakedMenu/>)}
+                {ActivatedCm === "Un-Staked" && (<UnStakedMenu/>)}
+                {ActivatedCm === "Progress" && (<ProgressMenu/>)}
+            </div>
+
+        </div>
     )
-    }
-    export default  Stack
+}
+
+export default Stack

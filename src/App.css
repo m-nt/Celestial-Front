@@ -1,116 +1,316 @@
- .position-absolute{
-   position:absolute
- }
- .d-flex{
-   display: flex;
- }
- .flex-column{
-   display: flex;
-   flex-direction: column;
- }
- .justify-content-center{
-   justify-content: center;
- }
- .align-items-center{
-   align-items: center;
- }
- .flex-center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
- }
- .w-100{
-   width: 100%;
- }
- .justify-content-between{
-   justify-content: space-between;
- }
+body {
+    /*font-family: Evil_Bible;*/
+}
 
- .w-86{
-  width: 86%;
+.position-absolute {
+    position: absolute
 }
-.h-20vh{
-  height: 20vh;
+
+.text-white {
+    color: white;
 }
-.h-90vh{
-  height: 90vh;
+.overflow-hidden{
+    overflow: hidden;
 }
-.mainContainer{
-  height: 100%;
-  width: 86%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 900px
+.flex-wrap{
+    flex-wrap: wrap;
 }
-.shadow-dark-box{
-  box-shadow: 0  0 3px 4px rgba(30,30,30,0.48)
+.d-flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.object-fit-contain {
+    object-fit: contain;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-around {
+    justify-content: space-around;
+}
+
+.align-items-end {
+    align-items: end;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-start {
+    align-items: start;
+}
+
+
+.w-86 {
+    width: 86%;
+}
+
+.h-20vh {
+    height: 20vh;
+}
+
+.h-90vh {
+    height: 90vh;
+}
+
+.mainContainer {
+    height: 100%;
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px
+}
+
+.shadow-dark-box {
+    box-shadow: 0 0 3px 4px rgba(30, 30, 30, 0.48)
 }
 
 .horizontal-scrolling {
-  width: 100%;
-  overflow: auto;
-  white-space: nowrap;
-  display: flex;
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
 }
+
 .vertical-scrolling {
-  height: 100%;
-  overflow: auto;
-  white-space: nowrap;
- }
-.overFlow-auto{
-  overflow:auto;
-}
-.overFlow-x-auto{
-  overflow-x:auto;
-}.overFlow-y-auto{
-  overflow-y:auto;
+    height: 100%;
+    overflow: auto;
+    white-space: nowrap;
 }
 
-.text-ellipsis{
- 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
- 
+.overFlow-auto {
+    overflow: auto;
+}
+
+.overFlow-x-auto {
+    overflow-x: auto;
+}
+
+.overFlow-y-auto {
+    overflow-y: auto;
+}
+
+.text-ellipsis {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
 
 }
+
 .centered-axis-xy {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
+
 .centered-axis-x {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
-.containerHeight{
-  height: 100%;
-  display: flex;
-  flex-flow: column;
+
+.containerHeight {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
 }
-.restHeight{
-  flex-grow : 1;
+
+.restHeight {
+    flex-grow: 1;
 }
+
 .restHeight::-webkit-scrollbar {
-  display: none;
-}
-.headerTitle{
-  font-size: 18px ;
- 
-  font-weight: 300;
-  margin: 10px 0;
-
-}
-.min-h-100vh{
-  min-height: 100vh;
+    display: none;
 }
 
-.bg-cover{
-  background-size: cover;
+.headerTitle {
+    font-size: 18px;
+
+    font-weight: 300;
+    margin: 10px 0;
+
 }
-.d-none{
-  display: none;
+
+.min-h-100vh {
+    min-height: 100vh;
 }
+
+.bg-cover {
+    background-size: cover;
+}
+
+.d-none {
+    display: none;
+}
+
+.MenuItemBtn {
+    position: relative;
+    font-size: 23px;
+    width: 220px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.menuStake {
+    font-family: Evil_Bible;
+    font-size: 25px;
+    padding: 20px;
+    color: whitesmoke;
+}
+
+.TextUnderMenuStake {
+    font-size: 40px;
+    font-family: Evil_Bible;
+}
+
+.TopSliderStake {
+    font-size: 40px
+}
+
+.itemsSlider {
+    position: relative;
+    width: 400px;
+}
+
+.BtnUnderSliderStake{
+    /*font-size: 20px;*/
+    font-family: Evil_Bible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textUnderSliderStake{
+    font-size: 20px;
+}
+
+.ArrowImgSliderStake{
+    width: 30px;
+}
+.BorderImgSliderStake{
+    width: 70px;
+}
+
+.ProgressMenu{
+    font-family: Evil_Bible;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.TitleProgressMenu{
+    font-size: 55px;
+}
+.descProgressMenu{
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+}
+
+@media only screen and (max-width: 2100px) {
+    .descProgressMenu{
+        font-size: 30px;
+    }
+    .TitleProgressMenu{
+        font-size: 40px;
+    }
+    .itemsSlider {
+        position: relative;
+        width: 300px;
+    }
+}
+
+
+@media only screen and (max-width: 1600px) {
+    .descProgressMenu{
+        font-size: 25px;
+    }
+    .TitleProgressMenu{
+        font-size: 35px;
+    }
+    .itemsSlider {
+        position: relative;
+        width: 270px;
+    }
+}
+
+
+@media only screen and (max-width: 1310px) {
+    .descProgressMenu{
+        font-size: 20px;
+    }
+    .TitleProgressMenu{
+        font-size: 30px;
+    }
+    .textUnderSliderStake{
+        font-size: 17px;
+    }
+    .TextUnderMenuStake {
+        font-size: 20px;
+    }
+
+    .MenuItemBtn {
+        width: 150px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .descProgressMenu{
+        font-size: 15px;
+    }
+    .TitleProgressMenu{
+        font-size: 20px;
+    }
+    .MenuItemBtn {
+        width: 110px;
+        font-size: 10px;
+    }
+    .align-items-Mobile-center{
+        display: flex;
+        justify-content: center!important;
+    }
+
+    .TopSliderStake {
+        font-size: 20px
+    }
+    .BorderImgSliderStake{
+        width: 50px;
+    }
+}
+
