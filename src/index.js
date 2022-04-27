@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
- 
+
 // import "antd/dist/antd.less";
 import "./Common/css/index.css";
 // import 'animate.css';
@@ -12,13 +12,17 @@ import './App.css'
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from "react-router-dom";
- const root = ReactDOM.createRoot(document.getElementById('root'));
+import { TransactionsProvider } from "./context/TransactionContext";
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
+      <TransactionsProvider>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </TransactionsProvider>
+
     </BrowserRouter>
 
   </React.StrictMode>

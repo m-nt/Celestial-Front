@@ -180,6 +180,7 @@ body {
     position: relative;
     font-size: 23px;
     width: 220px;
+    z-index: 10000;
 }
 
 .position-relative {
@@ -194,11 +195,15 @@ body {
 }
 
 .TextUnderMenuStake {
+    position: absolute;
+    top: 2%;
+    right: 2%;
     font-size: 40px;
     font-family: Evil_Bible;
 }
 
 .TopSliderStake {
+    margin-top: 120px;
     font-size: 40px
 }
 
@@ -217,7 +222,12 @@ body {
 }
 
 .textUnderSliderStake{
-    font-size: 20px;
+    font-size: 22px;
+}
+
+
+.textSoulsSliderStake{
+    font-size: 30px;
 }
 
 .ArrowImgSliderStake{
@@ -242,7 +252,29 @@ body {
     font-size: 40px;
 }
 
+
+
+
+
+
+
+
+.itemProgressMenu{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 27%;
+    height: 900px;
+    background-color: black;
+    justify-content: space-around;
+    opacity: 0.7;
+}
+
 @media only screen and (max-width: 2100px) {
+
+    .textUnderSliderStake{
+        font-size: 19px;
+    }
     .descProgressMenu{
         font-size: 30px;
     }
@@ -257,6 +289,10 @@ body {
 
 
 @media only screen and (max-width: 1600px) {
+
+    .textUnderSliderStake{
+        font-size: 17px;
+    }
     .descProgressMenu{
         font-size: 25px;
     }
@@ -270,7 +306,28 @@ body {
 }
 
 
+@media only screen and (max-width: 1450px) {
+    .TextUnderMenuStake {
+        top: 10%;
+        right: 2%;
+    }
+    .TopSliderStake {
+        margin-top: 240px;
+    }
+}
+
 @media only screen and (max-width: 1310px) {
+
+    .TextUnderMenuStake {
+        top: 8%;
+        right: 2%;
+    }
+    .TopSliderStake {
+        margin-top: 140px;
+    }
+    .textUnderSliderStake{
+        font-size: 15px;
+    }
     .descProgressMenu{
         font-size: 20px;
     }
@@ -288,9 +345,24 @@ body {
         width: 150px;
         font-size: 16px;
     }
+    .itemProgressMenu{
+        margin-top: 20px;
+        width: 45%;
+        height: 600px;
+    }
+    .ProgressMenu{
+       flex-direction: column;
+        align-items: center;
+    }
 }
 
 @media only screen and (max-width: 650px) {
+
+    .itemProgressMenu{
+        width: 70%;
+        height: 500px;
+    }
+
     .descProgressMenu{
         font-size: 15px;
     }

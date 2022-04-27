@@ -108,7 +108,7 @@ function StackMenu() {
         {
             img: ButtonBlack,
             text:"Un Stack",
-            width:"50%",
+            width:"60%",
             key: 2
         }
     ]
@@ -158,7 +158,7 @@ function StackMenu() {
                                     {
                                         item.img ?
                                             <>
-                                                <div className="d-flex justify-content-center align-items-end">
+                                                <div className="d-flex justify-content-center align-items-end textSoulsSliderStake">
                                                     <span>{item.soul}</span>
                                                     <img src={soul} alt="Blue"/>
                                                 </div>

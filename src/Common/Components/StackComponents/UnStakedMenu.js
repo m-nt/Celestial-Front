@@ -96,10 +96,10 @@ function UnStackMenu() {
 
     <div  className="text-white" style={{paddingBottom:"400px"}}>
         <div className="w-100 d-flex flex-column align-items-end TextUnderMenuStake ">
-            <span>Total Celestials Un-Staked : 1</span>
+            <span>Total Celestials Un-Staked : 5</span>
             <span>Total Nephilims Staked : 1</span>
-            <span>Total Demons Staked : 1</span>
-            <span>Total Angels Staked : 1</span>
+            <span>Total Demons Staked : 3</span>
+            <span>Total Angels Staked : 8</span>
         </div>
 
         <div className="d-flex flex-row align-items-center TopSliderStake text-white">
@@ -136,7 +136,7 @@ function UnStackMenu() {
                             <div className="BtnUnderSliderStake">
                                 {
                                     item.img &&
-                                    <div className='position-relative d-flex flex-center' style={{width: "50%" , marginTop:"20px"}}>
+                                    <div className='position-relative d-flex flex-center' style={{width: "70%" , marginTop:"20px"}}>
                                         <img src={ButtonBlack} alt="Blue" width="100%" height="100%"/>
                                         <span className='centered-axis-xy'>Stack</span>
                                     </div>
