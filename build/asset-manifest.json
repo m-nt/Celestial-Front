@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a3c96091.css",
-    "main.js": "/static/js/main.23d50b12.js",
+    "main.css": "/static/css/main.c6aa87c3.css",
+    "main.js": "/static/js/main.63146a74.js",
     "static/js/787.8fcdf523.chunk.js": "/static/js/787.8fcdf523.chunk.js",
     "static/media/MiniAngel.png": "/static/media/MiniAngel.8330d98aab378ac76526.png",
     "static/media/Background.jpg": "/static/media/Background.a4b0bafed5118cb82c38.jpg",
@@ -10,14 +10,17 @@
     "static/media/Gauge.png": "/static/media/Gauge.4196d3b5239373891afb.png",
     "static/media/Evil_Bible.ttf": "/static/media/Evil_Bible.772c044d3707f75629ba.ttf",
     "static/media/SummonButtonText.png": "/static/media/SummonButtonText.364b8e329af1e8e4b07a.png",
+    "static/media/nftBorder.png": "/static/media/nftBorder.ed9c7437709ec610fbd6.png",
     "static/media/GaugeBG.png": "/static/media/GaugeBG.6a475d0b3a7a6c2788a1.png",
+    "static/media/ButtonBlackWider.png": "/static/media/ButtonBlackWider.3e69e5826cacc91eeae9.png",
+    "static/media/ButtonBlackWide.png": "/static/media/ButtonBlackWide.fa256ca0e012cc58cb1d.png",
     "index.html": "/index.html",
-    "main.a3c96091.css.map": "/static/css/main.a3c96091.css.map",
-    "main.23d50b12.js.map": "/static/js/main.23d50b12.js.map",
+    "main.c6aa87c3.css.map": "/static/css/main.c6aa87c3.css.map",
+    "main.63146a74.js.map": "/static/js/main.63146a74.js.map",
     "787.8fcdf523.chunk.js.map": "/static/js/787.8fcdf523.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3c96091.css",
-    "static/js/main.23d50b12.js"
+    "static/css/main.c6aa87c3.css",
+    "static/js/main.63146a74.js"
   ]
 }
