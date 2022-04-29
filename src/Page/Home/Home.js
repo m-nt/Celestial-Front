@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { pageName } from "../../utility/Conts"
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from './../../utils/shortenAddress';
-
+import ax from './../../Common/static/PureSoul.png'
 
 const ImgSocialMedia = ({ to, hoverImg, mainImg }) => {
   let [hover, setHover] = useState(false)
@@ -44,7 +44,8 @@ function Home() {
                       <span className="ConnectingText">Connected</span>
                       <div className="position-relative">
                         <div class="position-absolute" style={{ width: "2vw", top: "-1vw" }}>
-                          <img src="./static/Pure Soul Essence.png" alt="Steak" width="100%" />
+                        <img src="./static/soul.png" alt="Steak" width="100%" />
+                          {/* <img src="./static/PureSoul.png" alt="Steak" width="100%" /> */}
                         </div>
                       </div>
                       {/* <div className="position-relative">
@@ -59,8 +60,9 @@ function Home() {
                     <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
                       <span className="ConnectingText">{shortenAddress(currentAccount)}</span>
                       <div className="position-relative">
-                        <div class="position-absolute" style={{ width: "2vw", top: "-1vw", left: "-1vw" }}>
-                          <img src="./static/soul.png" alt="Steak" width="100%" />
+                        <div class="position-absolute" style={{ width: "3vw",   left: "-1.5vw" }}>
+                        <img src={ax} alt="Steak" width="100%" />
+                  
                         </div>
                       </div>
                       <span className="ConnectingText">0</span>
