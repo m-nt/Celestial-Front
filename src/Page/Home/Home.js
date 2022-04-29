@@ -1,31 +1,32 @@
-import { useState ,useContext ,useEffect} from "react"
+import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { pageName } from "../../utility/Conts"
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from './../../utils/shortenAddress';
 
 
-const ImgSocialMedia=({to,hoverImg,mainImg})=>{
+const ImgSocialMedia = ({ to, hoverImg, mainImg }) => {
   let [hover, setHover] = useState(false)
-  return(
-<a href={to} target="_blank"> <img src={`./static/${hover?hoverImg:mainImg}`} alt="Steak" width="60px"
- onMouseEnter={() => setHover(true)}
- onMouseLeave={() => setHover(false)}
-  /></a>
+  return (
+    <a href={to} target="_blank"> <img src={`./static/${hover ? hoverImg : mainImg}`} alt="Steak" width="60px"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    /></a>
   )
 }
 
 function Home() {
   let [disabale, setDisable] = useState(true)
-  const { currentAccount, connectWallet,getTotalSupply,handleChange, sendTransaction, formData, isLoading } = useContext(TransactionContext);
-useEffect(()=>{
-  console.log(currentAccount)
-  if(currentAccount && currentAccount!=="No accounts found"){
-    setDisable(false)
-  } 
-  
-},[currentAccount])
- 
+  const { currentAccount, connectWallet, getTotalSupply, SoulBalance,soulBalances, isLoading } = useContext(TransactionContext);
+  useEffect(() => {
+    console.log(currentAccount)
+    if (currentAccount && currentAccount !== "No accounts found") {
+      setDisable(false)
+      SoulBalance()
+    }
+
+  }, [currentAccount])
+
 
   return (
     <body id="backgroundHome">
@@ -35,25 +36,57 @@ useEffect(()=>{
           {/* <!-- Wallet Connection --> */}
           <div class="w3-quarter w3-mobile" style={{ width: "30%", position: "relative" }}>
             {
-              currentAccount?
-              <div onClick={getTotalSupply}>
-                {shortenAddress(currentAccount)}
-              </div>  
+              currentAccount ?
+                <div onClick={getTotalSupply} style={{ position: "relative" }}>
+                  <img onClick={() => { }} src="./static/Wallet_border.png" alt="Steak" width="100%" />
+                  <div className="position-absolute  " style={{ top: "6%", right: "10%", width: "70%" }}>
+                    <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
+                      <span className="ConnectingText">Connected</span>
+                      <div className="position-relative">
+                        <div class="position-absolute" style={{ width: "2vw", top: "-1vw" }}>
+                          <img src="./static/Pure Soul Essence.png" alt="Steak" width="100%" />
+                        </div>
+                      </div>
+                      {/* <div className="position-relative">
+                          <div className="position-absolute"  style={{width:"15%"}}>
+                          <img   src="./static/soul.png" alt="soul"   />
+                          </div>
+                        </div> */}
 
-              :
-                //  <img onClick={connectWallet} src="./static/Metamask.png" alt="Steak" width="100%" />
-                 <img onClick={()=>{}} src="./static/Metamask.png" alt="Steak" width="100%" />
+                      <span className="ConnectingText">{soulBalances}</span>
+
+                    </div>
+                    <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
+                      <span className="ConnectingText">{shortenAddress(currentAccount)}</span>
+                      <div className="position-relative">
+                        <div class="position-absolute" style={{ width: "2vw", top: "-1vw", left: "-1vw" }}>
+                          <img src="./static/soul.png" alt="Steak" width="100%" />
+                        </div>
+                      </div>
+                      <span className="ConnectingText">0</span>
+
+                    </div>
+
+
+                  </div>
+
+
+
+                </div>
+
+                :
+                <img onClick={connectWallet} src="./static/Metamask.png" alt="Steak" width="100%" />
+              //  <img onClick={()=>{}} src="./static/Metamask.png" alt="Steak" width="100%" />
             }
-         
+
             <div style={{ position: "absolute", left: "3.5%", top: "70%" }}>
               <img src="./static/Bars.png" alt="Steak" style={{ width: "100%" }} />
-              <Link  to={ disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
+              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link>
               {/* <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link> */}
-              <a href={"https://cdn.discordapp.com/attachments/954089187366305922/968988338675658782/CelestialVerse_White_Paper_v1.1.pdf"}  target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "25%", top: "71%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>
-              {/* <Link to={"https://cdn.discordapp.com/attachments/769149814566551552/965986048675028992/CelestialVerse_White_Paper.pdf"}    target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "71%" }} className={ " menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></Link> */}
-             </div>
+              <a href={"https://cdn.discordapp.com/attachments/954089187366305922/968988338675658782/CelestialVerse_White_Paper_v1.1.pdf"} target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "25%", top: "71%" }} className={" menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>
+            </div>
           </div>
           {/* <!-- Wallet Connection --> */}
           <div class="w3-half w3-mobile mobile-extend" style={{ width: "40%" }}> &nbsp;</div>
@@ -100,13 +133,13 @@ useEffect(()=>{
         <div class="w3-quarter w3-mobile" style={{ height: "10px", width: "20%" }}></div>
         <div class="w3-half w3-mobile" style={{ width: " 60%" }}>
 
-        <ImgSocialMedia to={'https://twitter.com/Celestial_Verse'} hoverImg={'TwitterHover.png'} mainImg={'twitter.png'}/>  
-        <ImgSocialMedia to={'https://nftrade.com/'} hoverImg={'NFTradeHover.png'} mainImg={'NFTrade.png'}/>  
-        <ImgSocialMedia to={'https://discord.gg/n5gJskdgdw'} hoverImg={'DiscordHover.png'} mainImg={'discord.png'}/>  
-     
+          <ImgSocialMedia to={'https://twitter.com/Celestial_Verse'} hoverImg={'TwitterHover.png'} mainImg={'twitter.png'} />
+          <ImgSocialMedia to={'https://nftrade.com/'} hoverImg={'NFTradeHover.png'} mainImg={'NFTrade.png'} />
+          <ImgSocialMedia to={'https://discord.gg/n5gJskdgdw'} hoverImg={'DiscordHover.png'} mainImg={'discord.png'} />
+
         </div>
         <div class="w3-quarter w3-mobile" style={{ width: "20%" }}>
-          <p class="w3-right" style={{margin:"0px 0px 0px 0px" , color: "yellow", fontSize: "x-large" }}>V1.0</p>
+          <p class="w3-right" style={{ margin: "0px 0px 0px 0px", color: "yellow", fontSize: "x-large" }}>V1.0</p>
         </div>
       </div>
       {/* <!-- Footer --> */}

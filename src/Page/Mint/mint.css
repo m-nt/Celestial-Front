@@ -3,20 +3,59 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
-    height: 100%;
+    /* height: 100%; */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
   }
-  .imageCharacterAnjel{
-      width: 23%;
-      height: 30%;
-     
+#minLoading {
+  position: absolute;
+  z-index: 99!important;
+  top: 0;
+  left: 0;
+    background-image: url("../../Common/static/mint/BlackMintingBackground.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    /* height: 100%; */
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .imageCharacterDemon{
-      width: 8.5vw;
-      height: 30%;
-     
-  }
+
+.imgAvatarMint{
+  /* height: 400px; */
+  height: 30vw;
+  min-height: 300px;
+}
+.textUnderSliderMint{
+  font-size: 20px;
+}
+
+.textBorderMint{
+ font-weight: bold;
+  font-size: 40px;
+}
+
+.SummonButtonImgMint{
+  width: 200px;
+     /* margin: 0 40px 0 40px; */
+
+}  
+/* .ArrowImgSliderMint{
+  width: 50px;
+} */
+.BorderImgSliderMint{
+  width: 70px;
+}
+ 
+
+/* .WidthBtnUnder{
+  width: 50%;
+} */
+
   .progressBarInside{
     background-image: url("../../Common/static/mint/GaugeBG.png");
     /* background-repeat: no-repeat; */
@@ -87,3 +126,112 @@
           }
       }
 
+
+
+
+
+
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1750px) {
+
+
+  .WidthBtnUnder{
+    width: 50%;
+  }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 900px) {
+
+  .imgAvatarMint{
+    height: 300px;
+  }
+  .SummonButtonImgMint{
+    width: 100px;
+    /* margin: 0 40px 0 40px; */
+  }
+  /* .ArrowImgSliderMint{
+    width: 40px;
+  } */
+  .BorderImgSliderMint{
+    width: 70px;
+  }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1300px) {
+
+
+  .WidthBtnUnder{
+    width: 90%;
+  }
+
+}
+
+@media only screen and (max-width: 750px) {
+
+  .imgAvatarMint{
+    height: 200px;
+  }
+  .WidthBtnUnder{
+    margin-top: 20px;
+    height: 250px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+}
+
+
+
+
+
+.mainCenterPAddingTop{
+  padding-top: 8%;
+}
+
+@media only screen and (max-width: 600px) {
+  #backgroundMint {
+    background-image: url("../../Common/static/mint/bgMobile.jpg");
+ 
+  }
+  .mainCenterPAddingTop{
+    padding-top: 70%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+  .mainCenterPAddingTop{
+    padding-top: 70%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .mainCenterPAddingTop{
+    padding-top: 35%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .mainCenterPAddingTop{
+    padding-top:33%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .mainCenterPAddingTop{
+    padding-top: 7%;
+  }
+}

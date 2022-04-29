@@ -1,23 +1,35 @@
 {
   "files": {
-    "main.css": "/static/css/main.a3c96091.css",
-    "main.js": "/static/js/main.23d50b12.js",
-    "static/js/787.8fcdf523.chunk.js": "/static/js/787.8fcdf523.chunk.js",
-    "static/media/MiniAngel.png": "/static/media/MiniAngel.8330d98aab378ac76526.png",
-    "static/media/Background.jpg": "/static/media/Background.a4b0bafed5118cb82c38.jpg",
-    "static/media/BackgroundStaked.jpg": "/static/media/BackgroundStaked.8be774992019f975d321.jpg",
-    "static/media/MiniDemon.png": "/static/media/MiniDemon.f31d928193885fbbbd3e.png",
-    "static/media/Gauge.png": "/static/media/Gauge.4196d3b5239373891afb.png",
-    "static/media/Evil_Bible.ttf": "/static/media/Evil_Bible.772c044d3707f75629ba.ttf",
-    "static/media/SummonButtonText.png": "/static/media/SummonButtonText.364b8e329af1e8e4b07a.png",
-    "static/media/GaugeBG.png": "/static/media/GaugeBG.6a475d0b3a7a6c2788a1.png",
+    "main.css": "/static/css/main.2e5734ff.chunk.css",
+    "main.js": "/static/js/main.f8e885f9.chunk.js",
+    "main.js.map": "/static/js/main.f8e885f9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cbc718f7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cbc718f7.js.map",
+    "static/js/2.9ad1a147.chunk.js": "/static/js/2.9ad1a147.chunk.js",
+    "static/js/2.9ad1a147.chunk.js.map": "/static/js/2.9ad1a147.chunk.js.map",
+    "static/js/3.3aa9c52f.chunk.js": "/static/js/3.3aa9c52f.chunk.js",
+    "static/js/3.3aa9c52f.chunk.js.map": "/static/js/3.3aa9c52f.chunk.js.map",
     "index.html": "/index.html",
-    "main.a3c96091.css.map": "/static/css/main.a3c96091.css.map",
-    "main.23d50b12.js.map": "/static/js/main.23d50b12.js.map",
-    "787.8fcdf523.chunk.js.map": "/static/js/787.8fcdf523.chunk.js.map"
+    "static/css/main.2e5734ff.chunk.css.map": "/static/css/main.2e5734ff.chunk.css.map",
+    "static/js/2.9ad1a147.chunk.js.LICENSE.txt": "/static/js/2.9ad1a147.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Evil_Bible.772c044d.ttf",
+    "static/media/mint.css": "/static/media/bgMobile.49276bb7.jpg",
+    "static/media/ButtonBlackWide.fa256ca0.png": "/static/media/ButtonBlackWide.fa256ca0.png",
+    "static/media/ButtonBlackWider.3e69e582.png": "/static/media/ButtonBlackWider.3e69e582.png",
+    "static/media/Gauge.4196d3b5.png": "/static/media/Gauge.4196d3b5.png",
+    "static/media/Menu.87d5741f.png": "/static/media/Menu.87d5741f.png",
+    "static/media/MiniAngel.8330d98a.png": "/static/media/MiniAngel.8330d98a.png",
+    "static/media/MiniDemon.f31d9281.png": "/static/media/MiniDemon.f31d9281.png",
+    "static/media/Minting.095d200b.gif": "/static/media/Minting.095d200b.gif",
+    "static/media/MintingSuccess.06621efb.png": "/static/media/MintingSuccess.06621efb.png",
+    "static/media/SummonNoHover.364b8e32.png": "/static/media/SummonNoHover.364b8e32.png",
+    "static/media/SummonYesHover.0834e13d.png": "/static/media/SummonYesHover.0834e13d.png",
+    "static/media/nftBorder.ed9c7437.png": "/static/media/nftBorder.ed9c7437.png"
   },
   "entrypoints": [
-    "static/css/main.a3c96091.css",
-    "static/js/main.23d50b12.js"
+    "static/js/runtime-main.cbc718f7.js",
+    "static/js/2.9ad1a147.chunk.js",
+    "static/css/main.2e5734ff.chunk.css",
+    "static/js/main.f8e885f9.chunk.js"
   ]
 }

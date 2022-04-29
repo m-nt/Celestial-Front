@@ -5,6 +5,7 @@
   background-size: cover;
   height: 100%;
 
+
 }
 #backgroundStack {
   background-image: url("../static/BackgroundStaked.jpg");
@@ -37,13 +38,19 @@ p {
   font-family: Evil_Bible;
   font-size: 3vw;
 }
+.ConnectingText {
+  color: whitesmoke;
+  font-family: Evil_Bible;
+  font-size: 2vw;
+}
 marquee {
   font-family: Evil_Bible;
   font-size: 20px;
 }
 @media only screen and (max-width: 600px) {
   #root{
-    height: 100%;
+    min-height: 100vh;
+    /* height: 100%; */
   }
   .mobile-extend {
     height: 420px !important;
@@ -55,6 +62,11 @@ marquee {
     color: whitesmoke;
     font-family: Evil_Bible;
     font-size: 9vw !important;
+  }
+  .ConnectingText {
+    color: whitesmoke;
+    font-family: Evil_Bible;
+    font-size: 6vw;
   }
  
 }

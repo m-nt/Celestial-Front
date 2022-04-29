@@ -3,81 +3,166 @@ import Anjel from './../../Common/static/mint/MiniAngel.png'
 import Demon from './../../Common/static/mint/MiniDemon.png'
 import progressBar from './../../Common/static/mint/Gauge.png'
 import progressBarPercent from './../../Common/static/mint/GaugeBG.png'
-import SummonButton from './../../Common/static/mint/SummonButtonText.png'
+import SummonButtonHover from './../../Common/static/mint/SummonYesHover.png'
+import SummonButton from './../../Common/static/mint/SummonNoHover.png'
+import MenuBase from './../../Common/static/mint/Menu.png'
+import MenuHover from './../../Common/static/mint/SummonNoHover.png'
 import AvaxLogo from './../../Common/static/mint/AvaxLogo.png'
 import RedCross from './../../Common/static/mint/RedCross.png'
 import MintAmountBorder from './../../Common/static/mint/MintAmountBorder.png'
 import ButtonNext from './../../Common/static/mint/ButtonNext.png'
 import ButtonPrevious from './../../Common/static/mint/ButtonPrevious.png'
 import ButtonBlue from './../../Common/static/mint/ButtonBlue.png'
+import ArrowLeft from "../../Common/static/Buttons/ButtonPrevious.png";
+import picBorder from "../../Common/static/border/PageBorder.png";
+import ArrowRight from "../../Common/static/Buttons/ButtonNext.png";
+import mintLod from "../../Common/static/mint/Minting.gif";
+import mintSuccess from "../../Common/static/mint/MintingSuccess.png";
 
-
-
-
+ import { useState, useContext, useEffect } from "react"
+ import { TransactionContext } from "../../context/TransactionContext";
+ 
 function Mint() {
+
+    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintNFT} = useContext(TransactionContext);
+
+    const [CountSlider , SetCountSlider] = useState(0)
+    let ArrayNumWidth = [
+        {
+            width:"33%",
+            number:"1"
+        },
+        {
+            width:"66%",
+            number:"5"
+        },
+        {
+            width:"100%",
+            number:"10"
+        }
+    ]
+
+    useEffect(()=>{
+        getTotalSupply()
+    },[])
+    const handelSummon=async()=>{
+        console.log("click on submit")
+        let qty=ArrayNumWidth[CountSlider].number ;
+       let tokenIds=[3] ;let celestialTypes=[1]
+    //    let data=await mintCelestialWithAVAX(qty,tokenIds,celestialTypes)
+       let data=await mintNFT(qty,tokenIds,celestialTypes)
+       console.log(data)
+    }
+
+
+
+
+    function FuncSlider(data) {
+        switch(data) {
+            case "LeftArrow":
+
+                if (CountSlider > 0){
+                    SetCountSlider(CountSlider-1)
+                }else {
+
+                }
+
+
+                break;
+            case "RightArrow":
+                if (CountSlider < 2 ){
+                    SetCountSlider(CountSlider+1)
+                }else {
+
+                }
+                break;
+            default:
+            // code block
+        }
+    }
     return (
         <div id="backgroundMint">
-            <div style={{ width: "70%",marginTop:"11%" }}>
 
-                <div className='d-flex justify-content-between w-100' >
-                    <img src={Anjel} alt="anjel" className='imageCharacterAnjel' />
-                    <img src={Demon} alt="Demon" className='imageCharacterDemon' />
-                </div>
-
-                <div className='position-relative'>
-                    <div className='w-100 d-flex justify-content-center position-relative'>
-                        <img src={progressBar} alt="progressBar " className='w-100 heightprogress' />
-                        <div className='w-100 position-absolute' style={{width: "70%"}}>
-                            <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width: "70%"}}  />
-                        </div >
-                        
-                        
-                    </div>
-                    <div className='w-100 flex-center positio-relative'  >
-                    {/* <img src={MintBorder} alt="progressBar "  /> */}
-                    <span className=' mintBorderText'>10,000/10,000</span>
-
-                
-                        </div >
-                </div>
-
-                <div className='w-100 flex-center'>
-                <div className='w-70 d-flex align-items-center justify-content-between  '>
-                    <div className='d-flex align-items-center'>
-                    <img src={ButtonPrevious} alt="ButtonPrevious" />
-                    
-                    <img src={MintAmountBorder} alt="MintAmountBorder" />
-                    <img src={ButtonNext} alt="ButtonNext" />
-                    </div>
-
-
-                    <img src={SummonButton} alt="SummonButton" />
-
-
-                    <div className='flex-column'>
-                    <div className='d-flex align-items-center'>
-                        <span className='whiteListText'>whitelist:</span>
-                        <img src={RedCross} alt="RedCross" />
-                        </div>
-                        <div className='d-flex align-items-center'>
-                      
-                    <img src={AvaxLogo} alt="AvaxLogo" className='whiteListText' />
-                    1.5
-                        </div>
-                    
-                    </div>
-
-
-                    </div>
-                </div>
-
-
-
+            <div id='minLoading' style={isLoading?{dispaly:"block"}:{display:"none"}}>
+                <img src={mintLod} alt="mintLod" style={{width:"68vw"}} />
             </div>
 
+            <div style={{width: "70%"}} className='mainCenterPAddingTop'>
+
+                <div className='d-flex justify-content-between w-100'>
+                    <div className="imgAvatarMint">
+                        <img src={Anjel} alt="anjel" width="100%" height="100%" style={{opacity:0}}/>
+                        <img src={Anjel} alt="anjel"   height="100%" className='imgAvatarMint' style={{position:"absolute",left:"7%"}}/>
+                    </div>
+                    <div className="imgAvatarMint">
+                        <img src={Demon} alt="Demon" width="100%" height="100%" />
+                     </div>
+                </div>
+
+                <div className='position-relative'   >
+                    <div className='w-100 d-flex justify-content-center position-relative'>
+                        <img src={progressBar} alt="progressBar " className='w-100 heightprogress'/>
+                        <div className='position-absolute' style={{width: "100%"}}>
+                            <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(totalNft/100) }}/>
+                        </div>
+                    </div>
+                    <div className='w-100 flex-center positio-relative'>
+                        <span className=' mintBorderText'>{totalNft}/10,000</span>
+                    </div>
+                </div>
+
+                <div className='w-100 flex-center text-white textUnderSliderMint' style={{marginTop:"20px "}}>
+                    <div className=' d-flex align-items-center justify-content-between   WidthBtnUnder' >
+                        <div className='d-flex align-items-center'>
+                            <div className="ArrowImgSliderMint"  onClick={()=>FuncSlider("LeftArrow")}>
+                                <img src={ButtonPrevious} alt={ButtonPrevious} width="100%" height="100%"/>
+                            </div>
+                            <div className="position-relative BorderImgSliderMint"  style={{marginRight: "20px", marginLeft: "20px"}}>
+                                <img src={MintAmountBorder} alt={MintAmountBorder} width="100%" height="100%"/>
+                                <span className='centered-axis-xy textBorderMint'>{ArrayNumWidth[CountSlider].number}</span>
+                            </div>
+                            <div className="ArrowImgSliderMint "  onClick={()=>FuncSlider("RightArrow")}>
+                                <img src={ButtonNext} alt={ButtonNext} width="100%" height="100%"/>
+                            </div>
+                        </div>
+
+
+                        <div className="SummonButtonImgMint centered-axis-x" onClick={handelSummon}>
+                        <HoverImg src1={SummonButton} src2={SummonButtonHover}/> 
+                            {/* <img src={SummonButton} alt="SummonButton" width="100%" height="100%"/> */}
+                        </div>
+                        {/* <div className="SummonButtonImgMint  " style={{display:"none"}}>
+                            <img src={SummonButton} alt="SummonButton" width="100%" height="100%"/>
+                        </div> */}
+
+
+                        <div className='flex-column'  >
+                            <div className='d-flex align-items-center'>
+                                <span className='whiteListText'>whitelist:</span>
+                                <img src={RedCross} alt="RedCross"/>
+                            </div>
+                            <div className='d-flex align-items-center'>
+                                <img src={AvaxLogo} alt="AvaxLogo" className='whiteListText'/>
+                                <span>1.5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
     )
 }
+
 export default Mint
+
+
+const HoverImg=({src1,src2})=>{
+    const[hover,setHover]=useState(false)
+
+    return(
+    <img src={hover?src2:src1} alt="SummonButton" width="100%" height="100%" onMouseEnter={()=>{setHover(!hover)}} onMouseLeave={()=>{setHover(!hover)}}/>
+
+    )
+}
