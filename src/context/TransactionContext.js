@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
- 
+  
 import { contractABI, contractAddress,nft,soul,stake ,addressTo , ABI,APIURL} from "../utils/constants";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 export const TransactionContext = React.createContext();
@@ -86,6 +86,7 @@ export const TransactionsProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [soulBalances, setSoulBalances] = useState(0);
   const [totalNft, settotalNft] = useState(0);
+  const [whiteList, setWhiteList] = useState(false);
 
 
 
@@ -217,7 +218,24 @@ console.log(celestialTypes)
 
 let header={"Access-Control-Allow-Origin": "*"}
 
-  const web3 = createAlchemyWeb3(API_URL,header);
+let headers= [{
+  name: 'Access-Control-Allow-Origin',
+  value: '*'
+}] ;
+
+
+  let  web3 = createAlchemyWeb3(API_URL );
+  // web3= new web3.providers.HttpProvider(
+  //     API_URL,
+  //     {
+  //       headers: [{
+  //         name: 'Access-Control-Allow-Origin',
+  //         // value: API_URL
+  //         value: '*'
+  //       }]
+  //     }
+  //   )
+ 
   const nftContract = new web3.eth.Contract(contractABI, nft);
   const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, 'latest'); //get latest nonce
   console.log(nonce)
@@ -430,7 +448,8 @@ let header={"Access-Control-Allow-Origin": "*"}
         soulBalances,
         totalNft,
         mintCelestialWithAVAX,
-        mintNFT
+        mintNFT,
+        whiteList
       }}
     >
       {children}

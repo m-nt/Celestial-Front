@@ -5,10 +5,10 @@ import Blue from './../../Common/static/Buttons/ButtonBlue.png'
 import redNoSelect from './../../Common/static/Buttons/ButtonRedOff.png'
 import redSelect from './../../Common/static/Buttons/ButtonRedOn.png'
 import {useState} from "react";
-
+import { useNavigate } from 'react-router-dom';
 function Stack() {
     const [ActivatedCm, SetActivatedCm] = useState("Staked")
-
+    const navigate = useNavigate();
     let DataArray = [
         {
             bgImg: Blue,
@@ -29,12 +29,12 @@ function Stack() {
 
     ]
     return (
-        <div id="backgroundStack">
+        <div id="backgroundStack">  
             <div className="d-flex menuStake">
                 {
                     DataArray.map((item) =>
                         <div className='MenuItemBtn'
-                             onClick={() => item.text !== "Menu" ? SetActivatedCm(item.text) : ""}>
+                             onClick={() => item.text !== "Menu" ? SetActivatedCm(item.text) : navigate('/')}>
                             <img src={item.bgImg} alt="Blue" width="100%"/>
                             <span className='centered-axis-xy'>{item.text}</span>
                         </div>

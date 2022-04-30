@@ -27,8 +27,8 @@
 
 .imgAvatarMint{
   /* height: 400px; */
-  height: 30vw;
-  min-height: 300px;
+  height: 25vw;
+  min-height: 200px;
 }
 .textUnderSliderMint{
   font-size: 20px;
@@ -50,7 +50,27 @@
 .BorderImgSliderMint{
   width: 70px;
 }
+
+.sliderImg{
  
+    position: relative;
+    margin-right: -50%;
+    transform: translateX(50%);
+ 
+}
+
+.mainSlider:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  top: 0;
+  left: 0;
+  background-color: #ffffff
+}
+ .sliderMain{
+  background-image: url("../../Common/static/mint/GaugeBG.png");
+ }
 
 /* .WidthBtnUnder{
   width: 50%;
@@ -225,7 +245,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .mainCenterPAddingTop{
-    padding-top:33%;
+    padding-top:20%;
   }
 }
 

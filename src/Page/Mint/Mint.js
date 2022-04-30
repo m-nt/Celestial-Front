@@ -6,9 +6,10 @@ import progressBarPercent from './../../Common/static/mint/GaugeBG.png'
 import SummonButtonHover from './../../Common/static/mint/SummonYesHover.png'
 import SummonButton from './../../Common/static/mint/SummonNoHover.png'
 import MenuBase from './../../Common/static/mint/Menu.png'
-import MenuHover from './../../Common/static/mint/SummonNoHover.png'
+import MenuHover from './../../Common/static/mint/MenuHover.png'
 import AvaxLogo from './../../Common/static/mint/AvaxLogo.png'
 import RedCross from './../../Common/static/mint/RedCross.png'
+import GreenCheck from './../../Common/static/mint/GreenCheck.png'
 import MintAmountBorder from './../../Common/static/mint/MintAmountBorder.png'
 import ButtonNext from './../../Common/static/mint/ButtonNext.png'
 import ButtonPrevious from './../../Common/static/mint/ButtonPrevious.png'
@@ -18,15 +19,18 @@ import picBorder from "../../Common/static/border/PageBorder.png";
 import ArrowRight from "../../Common/static/Buttons/ButtonNext.png";
 import mintLod from "../../Common/static/mint/Minting.gif";
 import mintSuccess from "../../Common/static/mint/MintingSuccess.png";
+import { useNavigate } from 'react-router-dom';
+
 
  import { useState, useContext, useEffect } from "react"
  import { TransactionContext } from "../../context/TransactionContext";
  
 function Mint() {
-
-    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintNFT} = useContext(TransactionContext);
+    const navigate = useNavigate();
+    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintNFT,whiteList} = useContext(TransactionContext);
 
     const [CountSlider , SetCountSlider] = useState(0)
+    
     let ArrayNumWidth = [
         {
             width:"33%",
@@ -42,6 +46,8 @@ function Mint() {
         }
     ]
 
+
+  
     useEffect(()=>{
         getTotalSupply()
     },[])
@@ -82,6 +88,9 @@ function Mint() {
     }
     return (
         <div id="backgroundMint">
+            <div style={{position:"absolute",left:"3vw", top:"3vw" ,maxWidth:"150px"}} onClick={()=>{navigate('/');}}>
+                        <HoverImg src1={MenuBase} src2={MenuHover}/> 
+           </div>
 
             <div id='minLoading' style={isLoading?{dispaly:"block"}:{display:"none"}}>
                 <img src={mintLod} alt="mintLod" style={{width:"68vw"}} />
@@ -92,7 +101,7 @@ function Mint() {
                 <div className='d-flex justify-content-between w-100'>
                     <div className="imgAvatarMint">
                         <img src={Anjel} alt="anjel" width="100%" height="100%" style={{opacity:0}}/>
-                        <img src={Anjel} alt="anjel"   height="100%" className='imgAvatarMint' style={{position:"absolute",left:"7%"}}/>
+                        <img src={Anjel} alt="anjel"   height="100%" className='imgAvatarMint' style={{position:"absolute",left:"10%"}}/>
                     </div>
                     <div className="imgAvatarMint">
                         <img src={Demon} alt="Demon" width="100%" height="100%" />
@@ -102,8 +111,11 @@ function Mint() {
                 <div className='position-relative'   >
                     <div className='w-100 d-flex justify-content-center position-relative'>
                         <img src={progressBar} alt="progressBar " className='w-100 heightprogress'/>
-                        <div className='position-absolute' style={{width: "100%"}}>
-                            <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(totalNft/100) }}/>
+                        {/* <div className='position-absolute  ' style={{width: "70vw",overflow:"hidden",display: "inline-block",width: "80%",marginRight:"20%"}}> */}
+                        <div className='position-absolute  ' style={{width: "70vw",overflow:"hidden",display: "inline-block",marginRight: (100-(totalNft/100)).toString()+"%",width :(totalNft/100).toString()+"%"}}>
+                            {/* <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(3000/100).toString()+"%" }}/> */}
+                            <img src={progressBarPercent} className='heightprogress ' alt="progressBarPercent " style={{ width:"70vw" }}/>
+                            {/* <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(totalNft/100) }}/> */}
                         </div>
                     </div>
                     <div className='w-100 flex-center positio-relative'>
@@ -126,8 +138,8 @@ function Mint() {
                             </div>
                         </div>
 
-
-                        <div className="SummonButtonImgMint centered-axis-x" onClick={handelSummon}>
+                        {/* centered-axis-x */}
+                        <div className="SummonButtonImgMint " onClick={handelSummon}>
                         <HoverImg src1={SummonButton} src2={SummonButtonHover}/> 
                             {/* <img src={SummonButton} alt="SummonButton" width="100%" height="100%"/> */}
                         </div>
@@ -138,12 +150,12 @@ function Mint() {
 
                         <div className='flex-column'  >
                             <div className='d-flex align-items-center'>
-                                <span className='whiteListText'>whitelist:</span>
-                                <img src={RedCross} alt="RedCross"/>
+                                <span className='whiteListText' style={{ fontWeight:'bold'}}>Whitelist:</span>
+                                <img src={whiteList?GreenCheck:RedCross}  alt="RedCross"/>
                             </div>
-                            <div className='d-flex align-items-center'>
-                                <img src={AvaxLogo} alt="AvaxLogo" className='whiteListText'/>
-                                <span>1.5</span>
+                            <div className='d-flex align-items-center w-100 ' style={{marginRight:"3vw" ,fontWeight:'bold' ,justifyContent:"center"}}>
+                                <img src={whiteList?AvaxLogo:AvaxLogo}  width="30" alt="AvaxLogo" className='whiteListText'/>
+                                <span style={{paddingLeft:"6px"}}>{whiteList?"1.3":'1.5'}</span>
                             </div>
                         </div>
                     </div>
@@ -162,7 +174,7 @@ const HoverImg=({src1,src2})=>{
     const[hover,setHover]=useState(false)
 
     return(
-    <img src={hover?src2:src1} alt="SummonButton" width="100%" height="100%" onMouseEnter={()=>{setHover(!hover)}} onMouseLeave={()=>{setHover(!hover)}}/>
+    <img src={hover?src2:src1} style={{courser:"pointer"}} alt="SummonButton" width="100%" height="100%" onMouseEnter={()=>{setHover(!hover)}} onMouseLeave={()=>{setHover(!hover)}}/>
 
     )
 }

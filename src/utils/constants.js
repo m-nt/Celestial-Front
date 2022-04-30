@@ -8,4 +8,5 @@ export const stake = "0xc5c69a68B59B6340BB01063893A12313cdAE6256";
 export const contractABI = abi.abi;
 export const ABI = abi;
 export const addressTo="0x3506756fB37E0d8Dfccc409Ab6194A41A81568f2";
-export const APIURL="https://rinkeby.infura.io/v3/cc8a82c081064ac094b5189ca2e5f6e0";
+// export const APIURL="https://rinkeby.infura.io/v3/cc8a82c081064ac094b5189ca2e5f6e0";
+export const APIURL="https://eth-rinkeby.alchemyapi.io/v2/pIW7x40L7L7Yidpm1aAb_U93PXFYTyCr";
