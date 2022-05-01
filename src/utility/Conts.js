@@ -61,7 +61,7 @@ export const pageName = {
   main: "/",
   home: "/TestMest/home",
   mint: "/TestMest/mint",
-  stack: "/TestMest/stake",
+  stack: "/TestMest/soul-hount",
  
 
 };
@@ -76,13 +76,8 @@ export const localStorageKeys = {
 // ****Base Url****
 export const url = "http://195.201.73.13:5000/";
 export const urlPath = "api/v1";
-// export const baseURL =url+urlPath;
-// export const baseURL ='http://195.201.73.13:5000/api/v1';
-// export const baseURL = "https://ashstation.cn/api/v1";
-export const baseURL = "https://api.ashstation.com/api/v1";
-// export const socketAddress="http://192.168.1.144:5000"
-// export const socketAddress="https://ashstation.cn"
-export const socketAddress="https://api.ashstation.com/"
+ 
+ 
 
 // *******component Const ********
 export const TabsName = ["Login", "Register", "Sign In"];

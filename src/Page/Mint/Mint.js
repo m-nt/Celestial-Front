@@ -18,18 +18,35 @@ import ArrowLeft from "../../Common/static/Buttons/ButtonPrevious.png";
 import picBorder from "../../Common/static/border/PageBorder.png";
 import ArrowRight from "../../Common/static/Buttons/ButtonNext.png";
 import mintLod from "../../Common/static/mint/Minting.gif";
+import MintingSuccess from "../../Common/static/mint/MintingSuccess.png";
 import mintSuccess from "../../Common/static/mint/MintingSuccess.png";
 import { useNavigate } from 'react-router-dom';
 
 
  import { useState, useContext, useEffect } from "react"
  import { TransactionContext } from "../../context/TransactionContext";
- 
+ import {RequestToken,MarkProof} from './../../utils/constants'
 function Mint() {
     const navigate = useNavigate();
-    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintNFT,whiteList} = useContext(TransactionContext);
+    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintCelestialWhitelist,mintNFT,whiteList,currentAccount,success} = useContext(TransactionContext);
 
-    const [CountSlider , SetCountSlider] = useState(0)
+    const [CountSlider , SetCountSlider] = useState(0);
+    const [IsMarkProof , SetIsMarkProof] = useState(false);
+    useEffect(()=>{
+        if(currentAccount){
+            getproof(currentAccount)
+        }
+
+        async function getproof(currentAccount){
+            let data=await  MarkProof(currentAccount);
+            if(data.status===200 && data.data.code==="ok"){
+                SetIsMarkProof(data.data.merkleProof.length>0)
+            }
+            // console.log(data)
+            
+        }
+ 
+    },[currentAccount])
     
     let ArrayNumWidth = [
         {
@@ -53,17 +70,73 @@ function Mint() {
     },[])
     const handelSummon=async()=>{
         console.log("click on submit")
+        console.log(CountSlider)
         let qty=ArrayNumWidth[CountSlider].number ;
-       let tokenIds=[3] ;let celestialTypes=[1]
+       let tokenIds=[] ;let celestialTypes=[] ;let merkleProof=[]
+
+       let LoopLenght=  ConverCountSlider();
+       console.log(LoopLenght)
+        let validate=true
+    //    mintCelestialWithAVAX ,mintCelestialWhitelist
     //    let data=await mintCelestialWithAVAX(qty,tokenIds,celestialTypes)
-       let data=await mintNFT(qty,tokenIds,celestialTypes)
-       console.log(data)
+    
+    //     let  address="0x0fF69fb0867d784bCa3F2aE769588fBf0FE09e47"
+      for(let i=0;i<LoopLenght;i++){
+
+        let data=await RequestToken({address:currentAccount})
+        if(data.status===200 && data.data.code==="ok"){
+            console.log(data.data)
+            tokenIds.push(data.data.tokenId)
+            celestialTypes.push(data.data.celestialType)
+            merkleProof.push(data.data.merkleProof)
+ 
+        }else{
+            validate=false
+            console.log("error")
+            console.log(data.data)
+            alert(data.data);
+        }
+           
+        }
+
+        if(validate){
+            if(!IsMarkProof){
+                console.log("mintCelestialWhitelist")
+                console.log(qty)
+                console.log( tokenIds )
+                console.log( celestialTypes)
+                let data=await mintCelestialWithAVAX(qty,tokenIds,celestialTypes)
+                console.log(data)
+
+
+            }else{
+                console.log(qty,tokenIds,celestialTypes,merkleProof)
+                let data=await mintCelestialWhitelist(merkleProof,qty,tokenIds,celestialTypes)
+                console.log(data)
+
+            }
+        }
+      }
+
+       
+
+    //    let data=await mintNFT(qty,tokenIds,celestialTypes)
+
+    const ConverCountSlider=   ()=>{
+        if(CountSlider===0){
+            return 1
+        }else if(CountSlider===1){
+            return 5
+        }else if(CountSlider===2){
+            return 10
+        }
     }
 
 
 
 
     function FuncSlider(data) {
+ 
         switch(data) {
             case "LeftArrow":
 
@@ -94,6 +167,9 @@ function Mint() {
 
             <div id='minLoading' style={isLoading?{dispaly:"block"}:{display:"none"}}>
                 <img src={mintLod} alt="mintLod" style={{width:"68vw"}} />
+            </div>
+            <div id='minLoading' style={success?{dispaly:"block"}:{display:"none"}}>
+                <img src={MintingSuccess} alt="mintLod" style={{width:"68vw"}} />
             </div>
 
             <div style={{width: "70%"}} className='mainCenterPAddingTop'>
@@ -151,11 +227,11 @@ function Mint() {
                         <div className='flex-column'  >
                             <div className='d-flex align-items-center'>
                                 <span className='whiteListText' style={{ fontWeight:'bold'}}>Whitelist:</span>
-                                <img src={whiteList?GreenCheck:RedCross}  alt="RedCross"/>
+                                <img src={IsMarkProof?GreenCheck:RedCross}  alt="RedCross" style={{paddingBottom:IsMarkProof?"7px":"0"}}/>
                             </div>
                             <div className='d-flex align-items-center w-100 ' style={{marginRight:"3vw" ,fontWeight:'bold' ,justifyContent:"center"}}>
-                                <img src={whiteList?AvaxLogo:AvaxLogo}  width="30" alt="AvaxLogo" className='whiteListText'/>
-                                <span style={{paddingLeft:"6px"}}>{whiteList?"1.3":'1.5'}</span>
+                                <img src={ AvaxLogo}  width="30" alt="AvaxLogo" className='whiteListText'/>
+                                <span style={{paddingLeft:"6px"}}>{IsMarkProof?    ConverCountSlider()*1.3:    ConverCountSlider()*1.5}</span>
                             </div>
                         </div>
                     </div>

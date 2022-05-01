@@ -4,6 +4,7 @@ import { pageName } from "../../utility/Conts"
 import { TransactionContext } from "../../context/TransactionContext";
 import { shortenAddress } from './../../utils/shortenAddress';
 import ax from './../../Common/static/PureSoul.png'
+import { nFormatter } from "../../utility/LocalStorageHelper";
 
 const ImgSocialMedia = ({ to, hoverImg, mainImg }) => {
   let [hover, setHover] = useState(false)
@@ -54,7 +55,7 @@ function Home() {
                           </div>
                         </div> */}
 
-                      <span className="ConnectingText">{soulBalances}</span>
+                      <span className="ConnectingText">{nFormatter(soulBalances)}</span>
 
                     </div>
                     <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
@@ -84,7 +85,7 @@ function Home() {
             <div style={{ position: "absolute", left: "3.5%", top: "70%" }}>
               <img src="./static/Bars.png" alt="Steak" style={{ width: "100%" }} />
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
-              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
+              <Link to={disabale ? "" : pageName.stack} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
               <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link>
               {/* <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link> */}
               <a href={"https://cdn.discordapp.com/attachments/954089187366305922/968988338675658782/CelestialVerse_White_Paper_v1.1.pdf"} target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "25%", top: "71%" }} className={" menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>

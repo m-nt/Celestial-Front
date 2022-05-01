@@ -1,43 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
   
-import { contractABI, contractAddress,nft,soul,stake ,addressTo , ABI,APIURL} from "../utils/constants";
+import { contractABI,contractABIStake, contractAddress,nft,soul,stake ,addressTo , ABI,APIURL,PayWhiteList,PayNormal} from "../utils/constants";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
-
-
-
-
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
@@ -62,7 +32,7 @@ const createSoulContract = () => {
 const createStakeContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
-  const transactionsContract = new ethers.Contract(stake, contractABI, signer);
+  const transactionsContract = new ethers.Contract(stake, contractABIStake, signer);
 
   return transactionsContract;
 };
@@ -82,6 +52,7 @@ export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({  amount: "", keyword: "", message: "" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
   const [transactions, setTransactions] = useState([]);
   const [soulBalances, setSoulBalances] = useState(0);
@@ -136,6 +107,7 @@ const getTotalSupply  = async () => {
 
       const totalSupply = await transactionsContract.totalSupply();
 
+
         settotalNft(ethers.utils.formatEther(totalSupply)* (10 ** 18))
     } else {
       console.log("Ethereum is not present");
@@ -161,14 +133,10 @@ const mintCelestialWhiteList  = async () => {
   }
 };
 const mintCelestialWithAVAX  = async (qty,tokenIds,celestialTypes) => {
-console.log(qty)
-console.log(tokenIds)
-console.log(celestialTypes)
+
   try {
     if (ethereum) {
-      console.log("mintCelestialWithAVAX")
       const transactionsContract = createNFTContract();
-      let addressTo="0x3506756fB37E0d8Dfccc409Ab6194A41A81568f2"
       let money=0.0001*qty
       const parsedAmount = ethers.utils.parseEther(money.toString());
       // qty=ethers.utils.parseEther(qty).toString();
@@ -179,20 +147,50 @@ console.log(celestialTypes)
 
               //  settotalNft(ethers.utils.formatEther(totalSupply)* (10 ** 18))
 
-      await ethereum.request({
-        method: "eth_sendTransaction",
-        params: [{
-          from: currentAccount,
-          to: addressTo,
-          gas: "0x5208",
-          value: parsedAmount._hex,
+      // await ethereum.request({
+      //   method: "eth_sendTransaction",
+      //   params: [{
+      //     from: currentAccount,
+      //     to: addressTo,
+      //     gas: "0x5208",
+      //     value: parsedAmount._hex,
           
-        }],
-      });
+      //   }],
+      // });
 
       // ,{from:currentAccount,value:parsedAmount}
-      const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes);
+      // let nftTxn = await nftContract.mintNFTs(1, { value: ethers.utils.parseEther("0.01") });
+      console.log("start minting")
+      // PayWhiteList,PayNormal
+      // const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther("0.001") });
+      const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther(PayNormal.toString()) });
   
+      
+      console.log(submitMint)
+      setIsLoading(true);
+      console.log(`Loading - ${submitMint.hash}`);
+      await submitMint.wait();
+      console.log(`Success - ${submitMint.hash}`);
+      setIsLoading(false);
+      setSuccess(true)
+      setTimeout(() => {
+        setSuccess(false)      }, 1000)
+      await getTotalSupply()
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const mintCelestialWhitelist  = async (qty,tokenIds,celestialTypes,merkleProof) => {
+
+  try {
+    if (ethereum) {
+      const transactionsContract = createNFTContract();
+      const submitMint = await transactionsContract.mintCelestialWhitelist(merkleProof,qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther("0.001") });
+      
       console.log(submitMint)
       setIsLoading(true);
       console.log(`Loading - ${submitMint.hash}`);
@@ -206,6 +204,211 @@ console.log(celestialTypes)
     console.log(error);
   }
 };
+
+// ***************************SoulHount**************
+
+// ***************************unStack**************
+
+const bachedCelestialsOfOwner  = async (address  ,  page) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createNFTContract();
+       const submitMint = await transactionsContract.bachedCelestialsOfOwner(address,page);
+    
+      return submitMint
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const Stakenft   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      console.log(createStakeContract)
+       const submitMint = await transactionsContract.stake(tokenId);
+       console.log(submitMint)
+   
+       console.log(`Loading - ${submitMint.hash}`);
+       await submitMint.wait();
+       console.log(`Success - ${submitMint.hash}`);
+ 
+      return submitMint
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const CelestialsOfOwner   = async (address) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createNFTContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.CelestialsOfOwner(address);
+ 
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// ***************************Stack**************
+
+
+const tokenOfOwnerBached  = async (address  ,  page) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+       const submitMint = await transactionsContract.tokenOfOwnerBached(address,page);
+    
+      return submitMint
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const tokenOfOwner   = async (address) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.tokenOfOwner(address);
+ 
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const earningInfo   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.earningInfo(tokenId);
+ 
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const getCooldown   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.getCooldown(tokenId);
+        // console.log(`Loading - ${AllCelestial.hash}`);
+     
+      //  console.log(`Success - ${AllCelestial.hash}`);
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const startEarning   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.startEarning(tokenId);
+        console.log(`Loading - ${AllCelestial.hash}`);
+       await AllCelestial.wait();
+       console.log(`Success - ${AllCelestial.hash}`);
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const claim   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.claim(tokenId);
+       console.log(`Loading - ${AllCelestial.hash}`);
+       await AllCelestial.wait();
+       console.log(`Success - ${AllCelestial.hash}`);
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+const unstake   = async (tokenId) => {
+  try {
+    if (ethereum) {
+      const transactionsContract = createStakeContract();
+      // console.log(createStakeContract)
+       const AllCelestial = await transactionsContract.unstake(tokenId);
+   console.log(`Loading - ${AllCelestial.hash}`);
+       await AllCelestial.wait();
+       console.log(`Success - ${AllCelestial.hash}`);
+      return AllCelestial
+      
+    } else {
+      console.log("Ethereum is not present");
+    }
+  } catch (error) {
+ 
+console.log(error?.data?.message)
+    console.log(error);
+    alert(error?.data?.messag)
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -441,6 +644,7 @@ let headers= [{
         transactions,
         currentAccount,
         isLoading,
+        success,
         sendTransaction,
         handleChange,
         formData,
@@ -449,7 +653,19 @@ let headers= [{
         totalNft,
         mintCelestialWithAVAX,
         mintNFT,
-        whiteList
+        whiteList,
+        mintCelestialWhitelist ,
+        bachedCelestialsOfOwner,
+        Stakenft,
+        CelestialsOfOwner,
+        tokenOfOwnerBached,
+        tokenOfOwner,
+        earningInfo,
+        startEarning,
+        claim,
+        unstake,
+        getCooldown
+
       }}
     >
       {children}
