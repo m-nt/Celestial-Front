@@ -171,12 +171,12 @@ function UnStackMenu() {
 
                         <div className="d-flex flex-column itemsSlider textUnderSliderStake">
                             <div className="w-100 h-100 position-relative">
-                                <img src={converbgType(item.celestialType)} alt={item.bg} width="100%" height="100%" />
-                                {/* src={axURL+item.token+'.png'} */}
                                 {
                                     item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='bottom-axis-y object-fit-contain' width="90%" height="90%" />
-                                        : <div className='centered-axis-xy object-fit-contain' style={{ width: "90%", height: "90%", backgroundColor: "black", opacity: "0.4" }} />
+                                        : <div className='centered-axis-xy object-fit-contain' style={{ width: "96%", height: "98%", backgroundColor: "black", opacity: "0.4" }} />
                                 }
+                                <img src={converbgType(item.celestialType)} alt={item.bg} width="100%" height="100%" />
+                                {/* src={axURL+item.token+'.png'} */}
 
                             </div>
                             <div className="BtnUnderSliderStake">

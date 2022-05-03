@@ -12,8 +12,8 @@ export const ABI = abi;
 export const addressTo="0x3506756fB37E0d8Dfccc409Ab6194A41A81568f2";
 export const axURL = "https://celestialverse.mypinata.cloud/ipfs/QmeMBSECYoQHjDFezLziG3zWYTJVhoSoAHtuvqbAG58irt/";
 
-export const PayWhiteList=0.0013;
-export const PayNormal=0.0015;
+export const PayWhiteList=1.3;
+export const PayNormal=1.5;
 // export const APIURL="https://rinkeby.infura.io/v3/cc8a82c081064ac094b5189ca2e5f6e0";
 export const APIURL="https://api.avax.network/ext/bc/C/rpc/A64G6N7HGVZJA2RNWQKSYPZ1JRW5741455";
 

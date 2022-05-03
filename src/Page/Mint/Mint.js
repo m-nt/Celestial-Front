@@ -1,8 +1,8 @@
 import './mint.css'
 import Anjel from './../../Common/static/mint/MiniAngel.png'
 import Demon from './../../Common/static/mint/MiniDemon.png'
-import progressBar from './../../Common/static/mint/Gauge.png'
-import progressBarPercent from './../../Common/static/mint/GaugeBG.png'
+import progressBar from './../../Common/static/mint/GaugeBG.png'
+import progressBarPercent from './../../Common/static/mint/Gauge.png'
 import SummonButtonHover from './../../Common/static/mint/SummonYesHover.png'
 import SummonButton from './../../Common/static/mint/SummonNoHover.png'
 import MenuBase from './../../Common/static/mint/Menu.png'
@@ -101,7 +101,7 @@ function Mint() {
 
         if(validate){
             if(!IsMarkProof){
-                console.log("mintCelestialWhitelist")
+                console.log("mintCelestialWithAVAX")
                 console.log(qty)
                 console.log( tokenIds )
                 console.log( celestialTypes)
@@ -190,7 +190,7 @@ function Mint() {
                         {/* <div className='position-absolute  ' style={{width: "70vw",overflow:"hidden",display: "inline-block",width: "80%",marginRight:"20%"}}> */}
                         <div className='position-absolute  ' style={{width: "70vw",overflow:"hidden",display: "inline-block",marginRight: (100-(totalNft/100)).toString()+"%",width :(totalNft/100).toString()+"%"}}>
                             {/* <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(3000/100).toString()+"%" }}/> */}
-                            <img src={progressBarPercent} className='heightprogress ' alt="progressBarPercent " style={{ width:"70vw" }}/>
+                            <img src={progressBarPercent} className='heightprogress ' alt="progressBarPercent " style={{ width:"70vw",scale:"50%" }}/>
                             {/* <img src={progressBarPercent} className='heightprogress' alt="progressBarPercent " style={{width:(totalNft/100) }}/> */}
                         </div>
                     </div>

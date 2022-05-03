@@ -146,7 +146,7 @@ function StackMenu() {
             guidence[4] = Tokens[4].token !== 0 ? convertEther(await getCooldown([Tokens[4].token])) - now : undefined
 
 
-            let newToken = Tokens.map((item, index) => ({ ...item, earn: earning[index], collDown: guidence[index] }))
+            let newToken = Tokens.map((item, index) => ({ ...item, earn: earning[index], cooldown: guidence[index] }))
             // Unix timestamp in milliseconds
             console.log(now);
 
@@ -186,7 +186,7 @@ function StackMenu() {
             console.log("Claim Souls")
             await claim(tokenId)
             getstack(NumberSlide - 1)
-        } else if (type === "Un Stack") {
+        } else if (type === "Un Stake") {
             console.log("Un Stack")
             await unstake(tokenId)
             getstack(NumberSlide - 1)
@@ -200,10 +200,11 @@ function StackMenu() {
         await getstack(NumberSlide - 1)
 
     }
-    const convertHour = (timeStamp) => {
-        var h = new Date(timeStamp).getHours();
-        var m = new Date(timeStamp).getMinutes();
-        return (h + "hour" + m + "min")
+    const convertHour = (timeStamp)  => {
+        //var d = cooldown.getDay() - now.getDay();
+        var h = parseInt(timeStamp / 60 / 60)
+        var m = parseInt((timeStamp - (h * 60 * 60))/60);
+        return (h + "hour" + m + "min" )
     }
 
 
@@ -236,7 +237,7 @@ function StackMenu() {
     return (
         <div className="text-white" style={{ paddingBottom: "200px" }}>
             <div className="w-100 d-flex flex-column align-items-end TextUnderMenuStake ">
-                <span>Total Celestials Un-Staked : {AllData.all}</span>
+                <span>Total Celestials Staked : {AllData.all}</span>
                 <span>Total Nephilims Staked : {AllData.Nephilim}</span>
                 <span>Total Demons Staked : {AllData.Demon}</span>
                 <span>Total Angels Staked : {AllData.Angel}</span>
@@ -247,11 +248,11 @@ function StackMenu() {
                 <div className="ArrowImgSliderStake" onClick={() => FuncSlider("LeftArrow")}>
                     <img src={ArrowLeft} alt={ArrowLeft} width="100%" height="100%" />
                 </div>
-
                 <div className="position-relative BorderImgSliderStake" style={{ marginRight: "20px", marginLeft: "20px" }}>
                     <img src={picBorder} alt={picBorder} width="100%" height="100%" />
                     <span className='centered-axis-xy'>{NumberSlide}</span>
                 </div>
+
                 <div className="ArrowImgSliderStake " onClick={() => FuncSlider("RightArrow")}>
                     <img src={ArrowRight} alt={ArrowRight} width="100%" height="100%" />
                 </div>
@@ -264,12 +265,12 @@ function StackMenu() {
 
                         <div className="d-flex flex-column itemsSlider textUnderSliderStake">
                             <div className="w-100 h-100 position-relative">
+                                {
+                                    item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='bottom-axis-y object-fit-contain' width="90%" height="90%" />
+                                        : <div className='centered-axis-xy object-fit-contain' style={{ width: "96%", height: "98%", backgroundColor: "black", opacity: "0.4" }} />
+                                }
                                 <img src={converbgType(item.celestialType)} alt={item.celestialType} width="100%" height="100%" />
 
-                                {
-                                    item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='centered-axis-xy object-fit-contain' width="90%" height="90%" />
-                                        : <div className='centered-axis-xy object-fit-contain' style={{ width: "90%", height: "90%", backgroundColor: "black", opacity: "0.4" }} />
-                                }
 
                             </div>
                             <div className="BtnUnderSliderStake">
@@ -287,7 +288,7 @@ function StackMenu() {
                                                         style={{ width: btn.width }}
                                                         key={btn.key}>
                                                         <img src={btn.img} alt="Blue" width="100%" height="100%" />
-                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.collDown > 0 ? convertHour(item.collDown) : btn.text : btn.text}</span>
+                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.cooldown > 0 ? convertHour(item.cooldown) : btn.text : btn.text}</span>
                                                     </div>
                                                 )
                                             }
