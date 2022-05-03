@@ -141,6 +141,12 @@ body {
     left: 50%;
     transform: translate(-50%, 0);
 }
+.bottom-axis-y {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+}
 
 .containerHeight {
     height: 100%;

@@ -58,6 +58,11 @@ function ProgressMenu() {
                     <span>artifacts equipped: 0</span>
                     <span>Relics equipped: 0</span>
                 </div>
+                <div className="descProgressMenu d-flex justify-content-center">
+                    {/* <span>artifacts equipped: 0</span> */}
+                    <p></p>
+                   
+                </div>
 
             </div>
 

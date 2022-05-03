@@ -48,6 +48,12 @@ marquee {
   font-family: Evil_Bible;
   font-size: 20px;
 }
+.tokenImg{
+  width: 2.2vw;
+  top: -1vw;
+  right: 3.7vw;
+  min-width: 17px;
+}
 @media only screen and (max-width: 600px) {
   #root{
     min-height: 100vh;
@@ -68,6 +74,12 @@ marquee {
     color: whitesmoke;
     font-family: Evil_Bible;
     font-size: 6vw;
+  }
+  .tokenImg{
+    width: 2.2vw;
+    top: -2vw;
+  right: 10.5vw;
+    min-width: 19px;
   }
  
 }

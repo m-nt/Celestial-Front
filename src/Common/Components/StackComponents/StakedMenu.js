@@ -21,15 +21,15 @@ import { axURL } from './../../../utils/constants'
 // tokenOfOwnerBached,
 // tokenOfOwner
 
- 
+
 function StackMenu() {
 
-    const {  currentAccount,tokenOfOwnerBached,tokenOfOwner ,earningInfo,startEarning,claim,unstake ,getCooldown} = useContext(TransactionContext);
+    const { currentAccount, tokenOfOwnerBached, tokenOfOwner, earningInfo, startEarning, claim, unstake, getCooldown } = useContext(TransactionContext);
     let [tokens, setToken] = useState([])
     let [count, setCount] = useState(0)
     let [AllData, setAllData] = useState({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
     const convertEther = (data) => ethers.utils.formatEther(data) * (10 ** 18)
-    const convertEarn = (data) => ethers.utils.formatEther(data)  
+    const convertEarn = (data) => ethers.utils.formatEther(data)
 
     const converbgType = (data) => {
         if (data === 1) {
@@ -43,21 +43,21 @@ function StackMenu() {
         }
     }
 
-    
+
 
     const [NumberSlide, SetNumberSlide] = useState(1)
 
     useEffect(() => {
         if (currentAccount) {
-        getstack(NumberSlide - 1)
-            }
-    }, [NumberSlide ,currentAccount])
+            getstack(NumberSlide - 1)
+        }
+    }, [NumberSlide, currentAccount])
 
     useEffect(() => {
         if (currentAccount) {
             console.log(count)
             allCeles(currentAccount)
-     
+
         }
 
 
@@ -65,7 +65,7 @@ function StackMenu() {
 
 
     async function allCeles(address) {
-  
+
         let all = await tokenOfOwner(address)
         console.log(all)
         setAllData({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
@@ -113,55 +113,60 @@ function StackMenu() {
         let Tokens = [];
         let earning = [];
         let guidence = [];
+        if (data === undefined) {
+            setToken([{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }])
+        } else {
 
 
-        data.map(async (item, index) => {
-        //   let earn= item.tokenId!==0? await earningInfo(item.tokenId):0
-        //   console.log(earn)
-          
-        // earn: convertEther(item.tokenId)!==0? await convertEther(earningInfo([convertEther(item.tokenId)])):undefined
-            let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
-            Tokens.push(row)
-     
-        })
- 
-        const now = parseInt(Date.now()/1000);
- 
-        earning[0]=Tokens[0].token!==0?parseFloat(convertEarn(await earningInfo([Tokens[0].token]))).toFixed(4):undefined
-        earning[1]=Tokens[1].token!==0?parseFloat(convertEarn(await earningInfo([Tokens[1].token]))).toFixed(4):undefined
-        earning[2]=Tokens[2].token!==0?parseFloat(convertEarn(await earningInfo([Tokens[2].token]))).toFixed(4):undefined
-        earning[3]=Tokens[3].token!==0?parseFloat(convertEarn(await earningInfo([Tokens[3].token]))).toFixed(4):undefined
-        earning[4]=Tokens[4].token!==0?parseFloat(convertEarn(await earningInfo([Tokens[4].token]))).toFixed(4):undefined
-      
-        guidence[0]=Tokens[0].token!==0?convertEther(await getCooldown([Tokens[0].token]))-now :undefined
-        // guidence[0]=Tokens[0].token!==0?new Date(parseFloat(convertEther(await getCooldown([Tokens[0].token]))-now)).getHours() :undefined
-        guidence[1]=Tokens[1].token!==0?convertEther(await getCooldown([Tokens[1].token]))-now :undefined
-        guidence[2]=Tokens[2].token!==0?convertEther(await getCooldown([Tokens[2].token]))-now :undefined
-        guidence[3]=Tokens[3].token!==0?convertEther(await getCooldown([Tokens[3].token]))-now :undefined
-        guidence[4]=Tokens[4].token!==0?convertEther(await getCooldown([Tokens[4].token]))-now :undefined
-
-        
-        let newToken=Tokens.map((item,index)=>({...item,earn:earning[index],collDown:guidence[index]}))
-      // Unix timestamp in milliseconds
-        console.log( now );
- 
 
 
-    console.log(guidence)
-    console.log(newToken)
-        setToken(newToken)
+            data.map(async (item, index) => {
+                //   let earn= item.tokenId!==0? await earningInfo(item.tokenId):0
+                //   console.log(earn)
 
+                // earn: convertEther(item.tokenId)!==0? await convertEther(earningInfo([convertEther(item.tokenId)])):undefined
+                let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
+                Tokens.push(row)
+
+            })
+
+            const now = parseInt(Date.now() / 1000);
+
+            earning[0] = Tokens[0].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[0].token]))).toFixed(4) : undefined
+            earning[1] = Tokens[1].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[1].token]))).toFixed(4) : undefined
+            earning[2] = Tokens[2].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[2].token]))).toFixed(4) : undefined
+            earning[3] = Tokens[3].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[3].token]))).toFixed(4) : undefined
+            earning[4] = Tokens[4].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[4].token]))).toFixed(4) : undefined
+
+            guidence[0] = Tokens[0].token !== 0 ? convertEther(await getCooldown([Tokens[0].token])) - now : undefined
+            // guidence[0]=Tokens[0].token!==0?new Date(parseFloat(convertEther(await getCooldown([Tokens[0].token]))-now)).getHours() :undefined
+            guidence[1] = Tokens[1].token !== 0 ? convertEther(await getCooldown([Tokens[1].token])) - now : undefined
+            guidence[2] = Tokens[2].token !== 0 ? convertEther(await getCooldown([Tokens[2].token])) - now : undefined
+            guidence[3] = Tokens[3].token !== 0 ? convertEther(await getCooldown([Tokens[3].token])) - now : undefined
+            guidence[4] = Tokens[4].token !== 0 ? convertEther(await getCooldown([Tokens[4].token])) - now : undefined
+
+
+            let newToken = Tokens.map((item, index) => ({ ...item, earn: earning[index], collDown: guidence[index] }))
+            // Unix timestamp in milliseconds
+            console.log(now);
+
+
+
+            console.log(guidence)
+            console.log(newToken)
+            setToken(newToken)
+        }
     }
-  
+
     function FuncSlider(data) {
         switch (data) {
             case "LeftArrow":
-              
-                SetNumberSlide(prev=>(prev>1?prev-1:1))
+
+                SetNumberSlide(prev => (prev > 1 ? prev - 1 : 1))
                 break;
             case "RightArrow":
-                
-                SetNumberSlide(prev=>(prev+1) )
+
+                SetNumberSlide(prev => (prev + 1))
                 break;
             default:
             // code block
@@ -170,20 +175,20 @@ function StackMenu() {
 
 
 
-   const  handelAction=async(type,tokenId)=>{
-       console.log(tokenId)
-       console.log(type)
-        if(type==="start Guiding"){
+    const handelAction = async (type, tokenId) => {
+        console.log(tokenId)
+        console.log(type)
+        if (type === "start Guiding") {
             console.log("start Guiding")
-            await  startEarning(tokenId)
+            await startEarning(tokenId)
             getstack(NumberSlide - 1)
-        }else if(type==="Claim Souls"){
+        } else if (type === "Claim Souls") {
             console.log("Claim Souls")
-            await  claim(tokenId)
+            await claim(tokenId)
             getstack(NumberSlide - 1)
-        }else if(type==="Un Stack"){
+        } else if (type === "Un Stack") {
             console.log("Un Stack")
-            await  unstake(tokenId)
+            await unstake(tokenId)
             getstack(NumberSlide - 1)
         }
     }
@@ -195,102 +200,102 @@ function StackMenu() {
         await getstack(NumberSlide - 1)
 
     }
-    const convertHour=(timeStamp)=>{
+    const convertHour = (timeStamp) => {
         var h = new Date(timeStamp).getHours();
         var m = new Date(timeStamp).getMinutes();
-        return (h+"hour"+m+"min")
+        return (h + "hour" + m + "min")
     }
- 
- 
+
+
     // const [Data , SetData] = useState(DataSlider1)
- 
- 
+
+
     let BtnBottomSlider = [
         {
-            img:  ButtonBlackWider,
-            text:"start Guiding",
-            width:"90%",
+            img: ButtonBlackWider,
+            text: "start Guiding",
+            width: "90%",
             key: 0
         },
         {
             img: ButtonBlackWide,
-            text:"Claim Souls",
-            width:"70%",
+            text: "Claim Souls",
+            width: "70%",
             key: 1
         },
         {
             img: ButtonBlack,
-            text:"Un Stack",
-            width:"60%",
+            text: "Un Stake",
+            width: "60%",
             key: 2
         }
     ]
 
-console.log("tokens")
-console.log(tokens)
+    console.log("tokens")
+    console.log(tokens)
     return (
-        <div  className="text-white" style={{paddingBottom:"200px"}}>
+        <div className="text-white" style={{ paddingBottom: "200px" }}>
             <div className="w-100 d-flex flex-column align-items-end TextUnderMenuStake ">
-            <span>Total Celestials Un-Staked : {AllData.all}</span>
+                <span>Total Celestials Un-Staked : {AllData.all}</span>
                 <span>Total Nephilims Staked : {AllData.Nephilim}</span>
                 <span>Total Demons Staked : {AllData.Demon}</span>
                 <span>Total Angels Staked : {AllData.Angel}</span>
             </div>
 
             <div className="d-flex flex-row align-items-center TopSliderStake text-white">
-                <span style={{marginRight: "20px", fontFamily: "Evil_Bible"}}>Page: </span>
-                <div className="ArrowImgSliderStake"  onClick={()=>FuncSlider("LeftArrow")}>
-                    <img src={ArrowLeft} alt={ArrowLeft} width="100%" height="100%"/>
+                <span style={{ marginRight: "20px", fontFamily: "Evil_Bible" }}>Page: </span>
+                <div className="ArrowImgSliderStake" onClick={() => FuncSlider("LeftArrow")}>
+                    <img src={ArrowLeft} alt={ArrowLeft} width="100%" height="100%" />
                 </div>
 
-                <div className="position-relative BorderImgSliderStake"  style={{marginRight: "20px", marginLeft: "20px"}}>
-                    <img src={picBorder} alt={picBorder} width="100%" height="100%"/>
+                <div className="position-relative BorderImgSliderStake" style={{ marginRight: "20px", marginLeft: "20px" }}>
+                    <img src={picBorder} alt={picBorder} width="100%" height="100%" />
                     <span className='centered-axis-xy'>{NumberSlide}</span>
                 </div>
-                <div className="ArrowImgSliderStake "  onClick={()=>FuncSlider("RightArrow")}>
-                    <img src={ArrowRight} alt={ArrowRight} width="100%" height="100%"/>
+                <div className="ArrowImgSliderStake " onClick={() => FuncSlider("RightArrow")}>
+                    <img src={ArrowRight} alt={ArrowRight} width="100%" height="100%" />
                 </div>
             </div>
 
 
-            <div className="w-100 d-flex flex-row justify-content-between flex-wrap align-items-Mobile-center" style={{ marginTop:"20px"}}>
+            <div className="w-100 d-flex flex-row justify-content-between flex-wrap align-items-Mobile-center" style={{ marginTop: "20px" }}>
                 {
                     tokens.map((item, index) =>
 
-                            <div className="d-flex flex-column itemsSlider textUnderSliderStake">
-                                <div className="w-100 h-100 position-relative">
-                                    <img src={converbgType(item.celestialType)} alt={item.celestialType} width="100%" height="100%"/>
+                        <div className="d-flex flex-column itemsSlider textUnderSliderStake">
+                            <div className="w-100 h-100 position-relative">
+                                <img src={converbgType(item.celestialType)} alt={item.celestialType} width="100%" height="100%" />
 
-                                    {
-                                        item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='centered-axis-xy object-fit-contain' width="90%" height="90%" />
-                                            : <div className='centered-axis-xy object-fit-contain'   style={{ width:"90%" , height:"90%" , backgroundColor:"black" , opacity:"0.4"}}/>
-                                    }
+                                {
+                                    item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='centered-axis-xy object-fit-contain' width="90%" height="90%" />
+                                        : <div className='centered-axis-xy object-fit-contain' style={{ width: "90%", height: "90%", backgroundColor: "black", opacity: "0.4" }} />
+                                }
 
-                                </div>
-                                <div className="BtnUnderSliderStake">
-
-                                    {
-                                        item.token !== 0 ?
-                                            <>
-                                                <div className="d-flex justify-content-center align-items-end textSoulsSliderStake">
-                                                    <span>{item.earn}</span>
-                                                    <img src={soul} alt="Blue"/>
-                                                </div>
-                                                {
-                                                    BtnBottomSlider.map((btn,iterate) =>
-                                                        <div className='position-relative d-flex flex-center' onClick={()=>handelAction(btn.text,item.token)}
-                                                             style={{width:btn.width}}
-                                                             key={btn.key}>
-                                                            <img src={btn.img} alt="Blue" width="100%" height="100%"/>
-                                                            <span className='centered-axis-xy'>{iterate===0?item.collDown>0?convertHour(item.collDown ):btn.text:btn.text}</span>
-                                                        </div>
-                                                    )
-                                                }
-                                            </>
-                                            : ""
-                                    }
-                                </div>
                             </div>
+                            <div className="BtnUnderSliderStake">
+
+                                {
+                                    item.token !== 0 ?
+                                        <>
+                                            <div className="d-flex justify-content-center align-items-end textSoulsSliderStake">
+                                                <span>{item.earn}</span>
+                                                <img src={soul} alt="Blue" />
+                                            </div>
+                                            {
+                                                BtnBottomSlider.map((btn, iterate) =>
+                                                    <div className='position-relative d-flex flex-center' onClick={() => handelAction(btn.text, item.token)}
+                                                        style={{ width: btn.width }}
+                                                        key={btn.key}>
+                                                        <img src={btn.img} alt="Blue" width="100%" height="100%" />
+                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.collDown > 0 ? convertHour(item.collDown) : btn.text : btn.text}</span>
+                                                    </div>
+                                                )
+                                            }
+                                        </>
+                                        : ""
+                                }
+                            </div>
+                        </div>
                     )
                 }
             </div>

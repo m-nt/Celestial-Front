@@ -18,7 +18,7 @@ const ImgSocialMedia = ({ to, hoverImg, mainImg }) => {
 
 function Home() {
   let [disabale, setDisable] = useState(true)
-  const { currentAccount, connectWallet, getTotalSupply, SoulBalance,soulBalances, isLoading } = useContext(TransactionContext);
+  const { currentAccount, connectWallet, getTotalSupply, SoulBalance, soulBalances, isLoading } = useContext(TransactionContext);
   useEffect(() => {
     console.log(currentAccount)
     if (currentAccount && currentAccount !== "No accounts found") {
@@ -41,19 +41,28 @@ function Home() {
                 <div onClick={getTotalSupply} style={{ position: "relative" }}>
                   <img onClick={() => { }} src="./static/Wallet_border.png" alt="Steak" width="100%" />
                   <div className="position-absolute  " style={{ top: "6%", right: "10%", width: "70%" }}>
-                    <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
-                      <span className="ConnectingText">Connected</span>
+
+                    <div className="w-100 d-flex align-content-center  " style={{ justifyContent: "space-between" }} >
+                      <span className="ConnectingText d-flex " style={{ alignItems: "center" }}>{shortenAddress(currentAccount)}</span>
+                      <div class="position-absolute tokenImg"  >
+                          <img src="./static/Tokens.png" alt="Steak" width="100%" />
+                        </div>
+                      <div className="d-flex flex-column">
+                        <span className="ConnectingText">{nFormatter(soulBalances)}</span>
+                        <span className="ConnectingText">0</span>
+                      </div>
+                    </div>
+
+
+
+                    {/* <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
+                      <span className="ConnectingText"></span>
                       <div className="position-relative">
-                        <div class="position-absolute" style={{ width: "2vw", top: "-1vw" }}>
-                        <img src="./static/soul.png" alt="Steak" width="100%" />
-                          {/* <img src="./static/PureSoul.png" alt="Steak" width="100%" /> */}
+                        <div class="position-absolute" style={{ width: "2.2vw", top: "-1vw", left: "3.7vw" }}>
+                          <img src="./static/Tokens.png" alt="Steak" width="100%" />
                         </div>
                       </div>
-                      {/* <div className="position-relative">
-                          <div className="position-absolute"  style={{width:"15%"}}>
-                          <img   src="./static/soul.png" alt="soul"   />
-                          </div>
-                        </div> */}
+
 
                       <span className="ConnectingText">{nFormatter(soulBalances)}</span>
 
@@ -61,14 +70,11 @@ function Home() {
                     <div className="d-flex w-100" style={{ justifyContent: "space-between" }}>
                       <span className="ConnectingText">{shortenAddress(currentAccount)}</span>
                       <div className="position-relative">
-                        <div class="position-absolute" style={{ width: "3vw",   left: "-1.5vw" }}>
-                        <img src={ax} alt="Steak" width="100%" />
-                  
-                        </div>
+
                       </div>
                       <span className="ConnectingText">0</span>
 
-                    </div>
+                    </div> */}
 
 
                   </div>
@@ -84,9 +90,9 @@ function Home() {
 
             <div style={{ position: "absolute", left: "3.5%", top: "70%" }}>
               <img src="./static/Bars.png" alt="Steak" style={{ width: "100%" }} />
-              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }}  >Minting</p></Link>
+              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "32%", top: "4%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Minting</p></Link>
               <Link to={disabale ? "" : pageName.stack} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "16%", top: "26%" }} className={disabale ? "  menuitem-Deactive" : "menuitemHover  menuitem menuitem cursor-pointer"} >Soul hunt(stake)</p></Link>
-              <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link>
+              <Link to={disabale ? "" : pageName.mint} className={" menuitem-Deactive"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={"  menuitem-Deactive"}  >Ascension well</p></Link>
               {/* <Link to={disabale ? "" : pageName.mint} className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "18%", top: "48%" }} className={disabale ? "  menuitem-Deactive" : " menuitemHover menuitem menuitem cursor-pointer"}  >Ascension well</p></Link> */}
               <a href={"https://cdn.discordapp.com/attachments/954089187366305922/968988338675658782/CelestialVerse_White_Paper_v1.1.pdf"} target="_blank" className={disabale ? "  menuitem-Deactive" : "  menuitem cursor-pointer"} ><p className={"  cursor-pointer"} style={{ position: "absolute", left: "25%", top: "71%" }} className={" menuitemHover menuitem menuitem cursor-pointer"} >White paper </p></a>
             </div>

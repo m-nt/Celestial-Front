@@ -137,8 +137,11 @@ const mintCelestialWithAVAX  = async (qty,tokenIds,celestialTypes) => {
   try {
     if (ethereum) {
       const transactionsContract = createNFTContract();
-      let money=0.0001*qty
-      const parsedAmount = ethers.utils.parseEther(money.toString());
+      // let money=0.0001*qty
+      let money=PayNormal*qty
+      console.log(money)
+      console.log(PayNormal)
+      // const parsedAmount = ethers.utils.parseEther(money.toString());
       // qty=ethers.utils.parseEther(qty).toString();
       // tokenIds=tokenIds.map(item=>ethers.utils.parseEther(item))
       // celestialTypes=celestialTypes.map(item=>ethers.utils.parseEther(item))
@@ -163,7 +166,7 @@ const mintCelestialWithAVAX  = async (qty,tokenIds,celestialTypes) => {
       console.log("start minting")
       // PayWhiteList,PayNormal
       // const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther("0.001") });
-      const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther(PayNormal.toString()) });
+      const submitMint = await transactionsContract.mintCelestialWithAVAX(qty,tokenIds,celestialTypes,{ value: ethers.utils.parseEther(money.toString()) });
   
       
       console.log(submitMint)

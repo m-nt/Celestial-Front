@@ -102,9 +102,10 @@ function UnStackMenu() {
         
         let data = await bachedCelestialsOfOwner(currentAccount, pageNumber);
         console.log(data)
-        let Tokens = [];
-
-
+        if(data===undefined){
+            setToken([ { token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 }])
+        }else{
+              let Tokens = [];
         data.map((item, index) => {
             let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
             Tokens.push(row)
@@ -112,6 +113,8 @@ function UnStackMenu() {
         console.log(Tokens)
 
         setToken(Tokens)
+        }
+      
 
     }
 
@@ -171,7 +174,7 @@ function UnStackMenu() {
                                 <img src={converbgType(item.celestialType)} alt={item.bg} width="100%" height="100%" />
                                 {/* src={axURL+item.token+'.png'} */}
                                 {
-                                    item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='centered-axis-xy object-fit-contain' width="90%" height="90%" />
+                                    item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='bottom-axis-y object-fit-contain' width="90%" height="90%" />
                                         : <div className='centered-axis-xy object-fit-contain' style={{ width: "90%", height: "90%", backgroundColor: "black", opacity: "0.4" }} />
                                 }
 
@@ -182,7 +185,7 @@ function UnStackMenu() {
                                         item.token !== 0 &&
                                         <div className='position-relative d-flex flex-center' style={{ width: "70%", marginTop: "20px" }} onClick={() => handelStack(item.token)}>
                                             <img src={ButtonBlack} alt="Blue" width="100%" height="100%" />
-                                            <span className='centered-axis-xy'>Stack</span>
+                                            <span className='centered-axis-xy'>Stake</span>
                                         </div>
                                     }
                                 </div>
