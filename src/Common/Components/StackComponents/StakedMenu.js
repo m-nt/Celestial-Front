@@ -138,13 +138,14 @@ function StackMenu() {
             earning[3] = Tokens[3].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[3].token]))).toFixed(4) : undefined
             earning[4] = Tokens[4].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[4].token]))).toFixed(4) : undefined
 
-            guidence[0] = Tokens[0].token !== 0 ? convertEther(await getCooldown([Tokens[0].token])) - now : undefined
+            guidence[0] = Tokens[0].token !== 0 ? convertEther(await getCooldown(Tokens[0].token)) - now : undefined
             // guidence[0]=Tokens[0].token!==0?new Date(parseFloat(convertEther(await getCooldown([Tokens[0].token]))-now)).getHours() :undefined
-            guidence[1] = Tokens[1].token !== 0 ? convertEther(await getCooldown([Tokens[1].token])) - now : undefined
-            guidence[2] = Tokens[2].token !== 0 ? convertEther(await getCooldown([Tokens[2].token])) - now : undefined
-            guidence[3] = Tokens[3].token !== 0 ? convertEther(await getCooldown([Tokens[3].token])) - now : undefined
-            guidence[4] = Tokens[4].token !== 0 ? convertEther(await getCooldown([Tokens[4].token])) - now : undefined
+            guidence[1] = Tokens[1].token !== 0 ? convertEther(await getCooldown(Tokens[1].token)) - now : undefined
+            guidence[2] = Tokens[2].token !== 0 ? convertEther(await getCooldown(Tokens[2].token)) - now : undefined
+            guidence[3] = Tokens[3].token !== 0 ? convertEther(await getCooldown(Tokens[3].token)) - now : undefined
+            guidence[4] = Tokens[4].token !== 0 ? convertEther(await getCooldown(Tokens[4].token)) - now : undefined
 
+            
 
             let newToken = Tokens.map((item, index) => ({ ...item, earn: earning[index], cooldown: guidence[index] }))
             // Unix timestamp in milliseconds
@@ -263,7 +264,7 @@ function StackMenu() {
                 {
                     tokens.map((item, index) =>
 
-                        <div className="d-flex flex-column itemsSlider textUnderSliderStake">
+                        <div className="d-flex flex-column itemsSlider textUnderSliderStake" style={{marginTop:'8px'}}>
                             <div className="w-100 h-100 position-relative">
                                 {
                                     item.token !== 0 ? <img src={axURL + item.token + '.png'} alt={index} className='bottom-axis-y object-fit-contain' width="90%" height="90%" />
@@ -288,7 +289,7 @@ function StackMenu() {
                                                         style={{ width: btn.width }}
                                                         key={btn.key}>
                                                         <img src={btn.img} alt="Blue" width="100%" height="100%" />
-                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.cooldown > 0 ? convertHour(item.cooldown) : btn.text : btn.text}</span>
+                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.cooldown > 0 ? convertHour(item.cooldown) : item.celestialType===2?"Start Deceiving":item.celestialType===3?"Guide and Deceive": btn.text : btn.text}</span>
                                                     </div>
                                                 )
                                             }

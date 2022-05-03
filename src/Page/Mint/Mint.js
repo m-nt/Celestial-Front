@@ -25,20 +25,34 @@ import { useNavigate } from 'react-router-dom';
 
  import { useState, useContext, useEffect } from "react"
  import { TransactionContext } from "../../context/TransactionContext";
- import {RequestToken,MarkProof} from './../../utils/constants'
+ import {RequestToken,MarkProof, UpdateToken} from './../../utils/constants'
+ import { ethers } from "ethers";
+ const Web3 = require("web3");
+//  const toBN = Web3.utils.toBN;
+ const toBN = Web3.utils.hexToBytes;
+ const { ethereum } = window;
 function Mint() {
     const navigate = useNavigate();
-    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintCelestialWhitelist,mintNFT,whiteList,currentAccount,success} = useContext(TransactionContext);
+    const { getTotalSupply ,totalNft, isLoading,mintCelestialWithAVAX ,mintCelestialWhitelist,mintNFT,whiteList,currentAccount,success,   error, setError} = useContext(TransactionContext);
 
     const [CountSlider , SetCountSlider] = useState(0);
     const [IsMarkProof , SetIsMarkProof] = useState(false);
+    const [isLoadingLocal , SetisLoadingLocal] = useState(false);
+
+useEffect(()=>{
+ 
+    SetisLoadingLocal(false)
+},[success ,error])
+
     useEffect(()=>{
         if(currentAccount){
             getproof(currentAccount)
         }
 
         async function getproof(currentAccount){
-            let data=await  MarkProof(currentAccount);
+            let data=await  MarkProof({address:currentAccount});
+    
+          
             if(data.status===200 && data.data.code==="ok"){
                 SetIsMarkProof(data.data.merkleProof.length>0)
             }
@@ -47,6 +61,16 @@ function Mint() {
         }
  
     },[currentAccount])
+
+
+    // function getArray(items) {
+        // return items.map(item => "0x" + toBN(item.address).shln(96).or(toBN(item.amount)).toString(16));
+    //     return items.map(item => "0x" + toBN(item.address).shln(96) );
+    // }
+
+    function getArray(items) {
+        return items.map(item => "0x" + toBN(item.address).shln(96).or(toBN(item.amount)).toString(16));
+    }
     
     let ArrayNumWidth = [
         {
@@ -69,18 +93,15 @@ function Mint() {
         getTotalSupply()
     },[])
     const handelSummon=async()=>{
-        console.log("click on submit")
-        console.log(CountSlider)
+        
+  if(!isLoadingLocal){
+    // SetisLoadingLocal(true)
         let qty=ArrayNumWidth[CountSlider].number ;
        let tokenIds=[] ;let celestialTypes=[] ;let merkleProof=[]
 
        let LoopLenght=  ConverCountSlider();
-       console.log(LoopLenght)
-        let validate=true
-    //    mintCelestialWithAVAX ,mintCelestialWhitelist
-    //    let data=await mintCelestialWithAVAX(qty,tokenIds,celestialTypes)
-    
-    //     let  address="0x0fF69fb0867d784bCa3F2aE769588fBf0FE09e47"
+         let validate=true
+   
       for(let i=0;i<LoopLenght;i++){
 
         let data=await RequestToken({address:currentAccount})
@@ -88,6 +109,7 @@ function Mint() {
             console.log(data.data)
             tokenIds.push(data.data.tokenId)
             celestialTypes.push(data.data.celestialType)
+            // merkleProof.push(ethers.utils.formatBytes32String(data.data.merkleProof[0]))
             merkleProof.push(data.data.merkleProof)
  
         }else{
@@ -102,20 +124,22 @@ function Mint() {
         if(validate){
             if(!IsMarkProof){
                 console.log("mintCelestialWithAVAX")
-                console.log(qty)
-                console.log( tokenIds )
-                console.log( celestialTypes)
+          
                 let data=await mintCelestialWithAVAX(qty,tokenIds,celestialTypes)
                 console.log(data)
 
 
             }else{
-                console.log(qty,tokenIds,celestialTypes,merkleProof)
-                let data=await mintCelestialWhitelist(merkleProof,qty,tokenIds,celestialTypes)
-                console.log(data)
+          
+                let data=await mintCelestialWhitelist( merkleProof[0] ,qty,tokenIds,celestialTypes)
+                // console.log(data)
 
             }
         }
+  }
+   
+
+
       }
 
        
