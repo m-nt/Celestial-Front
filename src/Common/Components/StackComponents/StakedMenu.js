@@ -28,6 +28,7 @@ function StackMenu() {
     let [tokens, setToken] = useState([])
     let [count, setCount] = useState(0)
     let [AllData, setAllData] = useState({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
+    let [AllStack, setAllStack] = useState(null)
     const convertEther = (data) => ethers.utils.formatEther(data) * (10 ** 18)
     const convertEarn = (data) => ethers.utils.formatEther(data)
 
@@ -48,10 +49,10 @@ function StackMenu() {
     const [NumberSlide, SetNumberSlide] = useState(1)
 
     useEffect(() => {
-        if (currentAccount) {
-            getstack(NumberSlide - 1)
+        if (AllStack) {
+            getstack(NumberSlide  )
         }
-    }, [NumberSlide, currentAccount])
+    }, [NumberSlide, AllStack])
 
     useEffect(() => {
         if (currentAccount) {
@@ -68,6 +69,7 @@ function StackMenu() {
 
         let all = await tokenOfOwner(address)
         console.log(all)
+        setAllStack(all)
         setAllData({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
         if (all && count === 0) {
 
@@ -106,29 +108,32 @@ function StackMenu() {
 
 
     async function getstack(pageNumber) {
-        console.log(currentAccount)
-        console.log(pageNumber)
-        let data = await tokenOfOwnerBached(currentAccount, pageNumber);
-        console.log(data)
-        let Tokens = [];
+      
+ 
         let earning = [];
         let guidence = [];
-        if (data === undefined) {
-            setToken([{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }])
+        let Tokens=[{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }]
+        if (AllStack === undefined) {
+            setToken([{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }])
         } else {
+            for(let i=((pageNumber-1)*5);i<(pageNumber*5);i++){
+                console.log(i)
+                if(AllStack[i]){
+                    let item=AllStack[i];
+                    console.log("***********item******************")
+                    console.log(item)
+                    let row = { token: Math.ceil(convertEther(item.tokenId)), celestialType: convertEther(item.celestialType) };
+                    Tokens[i-((pageNumber-1)*5)]=row
+                }
 
+            }
+            console.log(Tokens)
+ 
+            // data.map(async (item, index) => {
+            //         let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
+            //     Tokens.push(row)
 
-
-
-            data.map(async (item, index) => {
-                //   let earn= item.tokenId!==0? await earningInfo(item.tokenId):0
-                //   console.log(earn)
-
-                // earn: convertEther(item.tokenId)!==0? await convertEther(earningInfo([convertEther(item.tokenId)])):undefined
-                let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
-                Tokens.push(row)
-
-            })
+            // })
 
             const now = parseInt(Date.now() / 1000);
 
@@ -139,8 +144,7 @@ function StackMenu() {
             earning[4] = Tokens[4].token !== 0 ? parseFloat(convertEarn(await earningInfo([Tokens[4].token]))).toFixed(4) : undefined
 
             guidence[0] = Tokens[0].token !== 0 ? convertEther(await getCooldown(Tokens[0].token)) - now : undefined
-            // guidence[0]=Tokens[0].token!==0?new Date(parseFloat(convertEther(await getCooldown([Tokens[0].token]))-now)).getHours() :undefined
-            guidence[1] = Tokens[1].token !== 0 ? convertEther(await getCooldown(Tokens[1].token)) - now : undefined
+             guidence[1] = Tokens[1].token !== 0 ? convertEther(await getCooldown(Tokens[1].token)) - now : undefined
             guidence[2] = Tokens[2].token !== 0 ? convertEther(await getCooldown(Tokens[2].token)) - now : undefined
             guidence[3] = Tokens[3].token !== 0 ? convertEther(await getCooldown(Tokens[3].token)) - now : undefined
             guidence[4] = Tokens[4].token !== 0 ? convertEther(await getCooldown(Tokens[4].token)) - now : undefined
@@ -148,13 +152,7 @@ function StackMenu() {
             
 
             let newToken = Tokens.map((item, index) => ({ ...item, earn: earning[index], cooldown: guidence[index] }))
-            // Unix timestamp in milliseconds
-            console.log(now);
-
-
-
-            console.log(guidence)
-            console.log(newToken)
+           
             setToken(newToken)
         }
     }
@@ -162,12 +160,15 @@ function StackMenu() {
     function FuncSlider(data) {
         switch (data) {
             case "LeftArrow":
-
+                
                 SetNumberSlide(prev => (prev > 1 ? prev - 1 : 1))
                 break;
             case "RightArrow":
+                if(AllData[(NumberSlide)*5]){
+                    SetNumberSlide(prev => (prev + 1))  
+                   
+                }
 
-                SetNumberSlide(prev => (prev + 1))
                 break;
             default:
             // code block

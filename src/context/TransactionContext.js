@@ -430,7 +430,7 @@ export const TransactionsProvider = ({ children }) => {
           DemonsMinted:coverether(DemonsMinted),
           NephilimsMinted:coverether(NephilimsMinted),
           MintGen0:coverether(MintGen0),
-          SoulMint:coverether(SoulMint),
+          SoulMint:(coverether(SoulMint)/(10 ** 18)).toFixed(2),
         })
      
     

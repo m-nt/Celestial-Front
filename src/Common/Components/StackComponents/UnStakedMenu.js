@@ -20,6 +20,7 @@ function UnStackMenu() {
 
     let [tokens, setToken] = useState([])
     let [count, setCount] = useState(0)
+    let [AllUStack, setAllUStack] = useState(null)
     let [AllData, setAllData] = useState({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
     const convertEther = (data) => ethers.utils.formatEther(data) * (10 ** 18)
     const converbgType = (data) => {
@@ -39,14 +40,14 @@ function UnStackMenu() {
 
      const [NumberSlide, SetNumberSlide] = useState(1)
 
-    useEffect(() => {
-        if(currentAccount){
-                   getUnstack(NumberSlide - 1)
-        }
-
  
 
-    }, [NumberSlide,currentAccount])
+    
+    useEffect(() => {
+        if (AllUStack) {
+            getUnstack(NumberSlide  )
+        }
+    }, [NumberSlide, AllUStack])  
 
     useEffect(() => {
         if (currentAccount) {
@@ -61,6 +62,8 @@ function UnStackMenu() {
     async function allCeles(address) {
         let all = await CelestialsOfOwner(address)
         console.log(all)
+        setAllUStack(all)
+
         setAllData({ all: 0, Nephilim: 0, Demon: 0, Angel: 0 })
         if (all && count === 0) {
 
@@ -98,19 +101,48 @@ function UnStackMenu() {
 
 
 
+
+
+
+    
+  
+
+ 
     async function getUnstack(pageNumber) {
         
-        let data = await bachedCelestialsOfOwner(currentAccount, pageNumber);
-        console.log(data)
-        if(data===undefined){
-            setToken([ { token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 }])
-        }else{
-              let Tokens = [];
-        data.map((item, index) => {
-            let row = { token: convertEther(item.tokenId), celestialType: convertEther(item.celestialType) };
-            Tokens.push(row)
-        })
-        console.log(Tokens)
+        let earning = [];
+        let guidence = [];
+        let Tokens=[{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }]
+        
+
+        if (AllUStack === undefined) {
+            setToken([{ token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }, { token: 0, celestialType: 0 }])
+        } else {
+            for(let i=((pageNumber-1)*5);i<(pageNumber*5);i++){
+                console.log(i)
+                if(AllUStack[i]){
+                    let item=AllUStack[i];
+                    console.log("***********item******************")
+                    console.log(item)
+                    let row = { token: Math.ceil(convertEther(item.tokenId)), celestialType: convertEther(item.celestialType) };
+                    Tokens[i-((pageNumber-1)*5)]=row
+                }
+
+            }
+
+
+
+        // let data = await bachedCelestialsOfOwner(currentAccount, pageNumber);
+        // console.log(data)
+        // if(data===undefined){
+        //     setToken([ { token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 },{ token: 0, celestialType: 0 }])
+        // }else{
+        //       let Tokens = [];
+        // data.map((item, index) => {
+        //     let row = { token: Math.ceil(convertEther(item.tokenId)), celestialType: convertEther(item.celestialType) };
+        //     Tokens.push(row)
+        // })
+        // console.log(Tokens)
 
         setToken(Tokens)
         }
@@ -118,20 +150,31 @@ function UnStackMenu() {
 
     }
 
+
+
+
     function FuncSlider(data) {
+   
         switch (data) {
             case "LeftArrow":
-              
-                SetNumberSlide(prev=>(prev>1?prev-1:1))
-                break;
-            case "RightArrow":
                 
-                SetNumberSlide(prev=>(prev+1) )
+                SetNumberSlide(prev => (prev > 1 ? prev - 1 : 1))
+                break;
+                case "RightArrow":
+ 
+               
+                if(AllUStack[(NumberSlide)*5]){
+                    SetNumberSlide(prev => (prev + 1))  
+                   
+                }
+
                 break;
             default:
             // code block
         }
     }
+
+
     const handelStack = async (tokenId) => {
         console.log(tokenId)
         await Stakenft(tokenId)
