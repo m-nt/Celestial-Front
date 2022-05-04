@@ -3,9 +3,9 @@ import stakeAbi from "./stakeAbi.json";
 
 // export const contractAddress = "0xfCCF80344a668b72ac4Be23513F0E9E4a35C84fA";
 export const contractAddress = "0xAdb4F0B1E2aE2EF8AeAeC526033A5f6fbcf1eF62";
-export const nft = "0xcf5bC4713b4B9D5291474259C8B1cb33F10b46be";
-export const soul = "0x58384976ef6411D971f1223D80A281d4C3831bfe";
-export const stake = "0x54aEE5B31dcE866dFa7e32E18cDce5fF973088b7";
+export const nft = "0x1973a32119FAf71D1F5671f84d0C4A4f6741e768";
+export const soul = "0x15DBFCB2ebf1324D4c460609B6A4d3bE153BAD97";
+export const stake = "0x76A547527aCb26A21eFF1deADcc5d9BE559F39Aa";
 export const contractABI = abi.abi;
 export const contractABIStake = stakeAbi.abi;
 export const ABI = abi;
