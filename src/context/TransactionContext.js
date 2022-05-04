@@ -109,9 +109,15 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createNFTContract();
 
         const totalSupply = await transactionsContract.totalSupply();
+        let value = ethers.utils.formatEther(totalSupply) * (10 ** 18)
+        let test = Math.ceil(value)
+        if ((test - value) > 0.5) {
+            value = Math.floor(value);
+        }else{
+            value = Math.ceil(value);
+        }
 
-
-        settotalNft(ethers.utils.formatEther(totalSupply) * (10 ** 18))
+        settotalNft(value)
       } else {
         console.log("Ethereum is not present");
       }

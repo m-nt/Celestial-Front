@@ -59,9 +59,9 @@ export const endPoints = {
 export const pageName = {
  
   main: "/",
-  home: "/TestMest/home",
-  mint: "/TestMest/mint",
-  stack: "/TestMest/soul-hount",
+  home: "/home",
+  mint: "/mint",
+  stack: "/soulhunt",
  
 
 };

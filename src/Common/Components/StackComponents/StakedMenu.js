@@ -122,7 +122,14 @@ function StackMenu() {
                     let item=AllStack[i];
                     console.log("***********item******************")
                     console.log(item)
-                    let row = { token: Math.ceil(convertEther(item.tokenId)), celestialType: convertEther(item.celestialType) };
+                    let value = convertEther(item.tokenId)
+                    let test = Math.ceil(value)
+                    if ((test - value) > 0.5) {
+                        value = Math.floor(value);
+                    }else{
+                        value = Math.ceil(value);
+                    }
+                    let row = { token: value, celestialType: convertEther(item.celestialType) };
                     Tokens[i-((pageNumber-1)*5)]=row
                 }
 
@@ -158,15 +165,17 @@ function StackMenu() {
     }
 
     function FuncSlider(data) {
+        
         switch (data) {
             case "LeftArrow":
                 
                 SetNumberSlide(prev => (prev > 1 ? prev - 1 : 1))
                 break;
             case "RightArrow":
-                if(AllData[(NumberSlide)*5]){
+                //AllData[(NumberSlide)*5]
+                if(true){
                     SetNumberSlide(prev => (prev + 1))  
-                   
+                    
                 }
 
                 break;
@@ -180,8 +189,8 @@ function StackMenu() {
     const handelAction = async (type, tokenId) => {
         console.log(tokenId)
         console.log(type)
-        if (type === "start Guiding") {
-            console.log("start Guiding")
+        if (type === "Start Guiding") {
+            console.log("Start Guiding")
             await startEarning(tokenId)
             getstack(NumberSlide - 1)
         } else if (type === "Claim Souls") {
@@ -216,7 +225,7 @@ function StackMenu() {
     let BtnBottomSlider = [
         {
             img: ButtonBlackWider,
-            text: "start Guiding",
+            text: "Start Guiding",
             width: "90%",
             key: 0
         },
@@ -255,7 +264,7 @@ function StackMenu() {
                     <span className='centered-axis-xy'>{NumberSlide}</span>
                 </div>
 
-                <div className="ArrowImgSliderStake " onClick={() => FuncSlider("RightArrow")}>
+                <div className="ArrowImgSliderStake" onClick={() => FuncSlider("RightArrow")}>
                     <img src={ArrowRight} alt={ArrowRight} width="100%" height="100%" />
                 </div>
             </div>
@@ -290,7 +299,7 @@ function StackMenu() {
                                                         style={{ width: btn.width }}
                                                         key={btn.key}>
                                                         <img src={btn.img} alt="Blue" width="100%" height="100%" />
-                                                        <span className='centered-axis-xy'>{iterate === 0 ? item.cooldown > 0 ? convertHour(item.cooldown) : item.celestialType===2?"Start Deceiving":item.celestialType===3?"Guide and Deceive": btn.text : btn.text}</span>
+                                                        <span className='centered-axis-xy' style={{width:"100%" , textAlign: "center"}}>{iterate === 0 ? item.cooldown > 0 ? convertHour(item.cooldown) : item.celestialType===2?"Start Deceiving":item.celestialType===3?"Guide and Deceive": btn.text : btn.text}</span>
                                                     </div>
                                                 )
                                             }

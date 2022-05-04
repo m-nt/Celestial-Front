@@ -124,7 +124,16 @@ function UnStackMenu() {
                     let item=AllUStack[i];
                     console.log("***********item******************")
                     console.log(item)
-                    let row = { token: Math.ceil(convertEther(item.tokenId)), celestialType: convertEther(item.celestialType) };
+
+                    let value = convertEther(item.tokenId)
+                    let test = Math.ceil(value)
+                    if ((test - value) > 0.5) {
+                        value = Math.floor(value);
+                    }else{
+                        value = Math.ceil(value);
+                    }
+
+                    let row = { token: value, celestialType: convertEther(item.celestialType) };
                     Tokens[i-((pageNumber-1)*5)]=row
                 }
 
@@ -162,8 +171,8 @@ function UnStackMenu() {
                 break;
                 case "RightArrow":
  
-               
-                if(AllUStack[(NumberSlide)*5]){
+               //AllUStack[(NumberSlide)*5]
+                if(true){
                     SetNumberSlide(prev => (prev + 1))  
                    
                 }

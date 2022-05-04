@@ -128,8 +128,9 @@ function Home() {
                   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
                   ultricies nec, pellentesque eu, pretium quis, sem.
                 </marquee> --> */}
-              <p class="w3-center" style={{ paddingTop: "10px", paddingRight: "10px", fontSize: "2vw" }}>
-                Look forward for updates!
+              <p class="w3-center" style={{ paddingTop: "5px", paddingRight: "12px", paddingLeft: "12px", fontSize: "2vw" }}>
+                Game is live! 
+                welcome to celestial verse 
               </p>
             </div>
           </div>
