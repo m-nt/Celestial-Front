@@ -152,6 +152,10 @@ function UnStackMenu() {
     console.log(tokenId);
     await Stakenft(tokenId);
     await getUnstack(NumberSlide - 1);
+    if (currentAccount) {
+      console.log(count);
+      allCeles(currentAccount);
+    }
   };
 
   return (

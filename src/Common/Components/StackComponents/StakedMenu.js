@@ -186,6 +186,10 @@ function StackMenu() {
       await unstake(tokenId);
       getstack(NumberSlide - 1);
     }
+    if (currentAccount) {
+      console.log(count);
+      allCeles(currentAccount);
+    }
   };
 
   const handelStack = async (tokenId) => {

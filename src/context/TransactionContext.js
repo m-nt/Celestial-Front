@@ -260,7 +260,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log("Ethereum is not present");
       }
     } catch (error) {
-      if (error.data.message === "execution reverted: ERC721: transfer caller is not owner nor approved") {
+      if (error?.data?.message === "execution reverted: ERC721: transfer caller is not owner nor approved") {
         const transactionsContract = createNFTContract();
         console.log(createNFTContract);
         const submitMint = await transactionsContract.setApprovalForAll(stake, true);
