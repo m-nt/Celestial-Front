@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 
-import { contractABI, contractABIStake, contractAddress, nft, soul, stake, addressTo, ABI, APIURL, PayWhiteList, PayNormal } from "../utils/constants";
-import { UpdateToken } from './../utils/constants';
+import {
+  contractABI,
+  contractABIStake,
+  contractAddress,
+  nft,
+  soul,
+  stake,
+  addressTo,
+  ABI,
+  APIURL,
+  PayWhiteList,
+  PayNormal,
+} from "../utils/constants";
+import { UpdateToken } from "./../utils/constants";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
-const coverether=(value)=>ethers.utils.formatEther(value) * (10 ** 18)
-
+const coverether = (value) => ethers.utils.formatEther(value) * 10 ** 18;
 
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -39,9 +50,6 @@ const createStakeContract = () => {
   return transactionsContract;
 };
 
-
-
-
 const initial = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
@@ -62,15 +70,13 @@ export const TransactionsProvider = ({ children }) => {
   const [totalNft, settotalNft] = useState(0);
   const [whiteList, setWhiteList] = useState(false);
 
-
-
   // ****************Menu************
 
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
 
-      const accounts = await ethereum.request({ method: "eth_requestAccounts", });
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 
       setCurrentAccount(accounts[0]);
       window.location.reload();
@@ -81,18 +87,18 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
   const SoulBalance = async () => {
-    console.log("***SoulBalance***")
+    console.log("***SoulBalance***");
     try {
       if (ethereum) {
         const transactionsContract = createSoulContract();
-        console.log("***transactionsContract***")
-        console.log(transactionsContract)
+        console.log("***transactionsContract***");
+        console.log(transactionsContract);
 
         const Balance = await transactionsContract.balanceOf(currentAccount);
 
         console.log(Balance);
-        console.log(ethers.utils.formatEther(Balance))
-        setSoulBalances(ethers.utils.formatEther(Balance))
+        console.log(ethers.utils.formatEther(Balance));
+        setSoulBalances(ethers.utils.formatEther(Balance));
         // setTransactions(structuredTransactions);
       } else {
         console.log("Ethereum is not present");
@@ -109,15 +115,15 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createNFTContract();
 
         const totalSupply = await transactionsContract.totalSupply();
-        let value = ethers.utils.formatEther(totalSupply) * (10 ** 18)
-        let test = Math.ceil(value)
-        if ((test - value) > 0.5) {
-            value = Math.floor(value);
-        }else{
-            value = Math.ceil(value);
+        let value = ethers.utils.formatEther(totalSupply) * 10 ** 18;
+        let test = Math.ceil(value);
+        if (test - value > 0.5) {
+          value = Math.floor(value);
+        } else {
+          value = Math.ceil(value);
         }
 
-        settotalNft(value)
+        settotalNft(value);
       } else {
         console.log("Ethereum is not present");
       }
@@ -142,75 +148,79 @@ export const TransactionsProvider = ({ children }) => {
   //   }
   // };
   const mintCelestialWithAVAX = async (qty, tokenIds, celestialTypes) => {
-
     try {
       if (ethereum) {
         const transactionsContract = createNFTContract();
-        let money = PayNormal * qty
-        const submitMint = await transactionsContract.mintCelestialWithAVAX(qty, tokenIds, celestialTypes, { value: ethers.utils.parseEther(money.toString()) });
+        let money = PayNormal * qty;
+        const submitMint = await transactionsContract.mintCelestialWithAVAX(qty, tokenIds, celestialTypes, {
+          value: ethers.utils.parseEther(money.toString()),
+        });
 
-
-        console.log(submitMint)
+        console.log(submitMint);
         setIsLoading(true);
         console.log(`Loading - ${submitMint.hash}`);
         await submitMint.wait();
         console.log(`Success - ${submitMint.hash}`);
-   
+
         for (let j = 0; j < tokenIds.length; j++) {
           let a = await UpdateToken(tokenIds[j]);
-          console.log(a)
+          console.log(a);
         }
-       setIsLoading(false);
-        setSuccess(true)
+        setIsLoading(false);
+        setSuccess(true);
         setTimeout(() => {
-          setSuccess(false)
-        }, 4000)
-        await getTotalSupply()
+          setSuccess(false);
+        }, 4000);
+        await getTotalSupply();
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
       console.log(error);
       console.log(error);
-      alert(error.message)
+      alert(error.message);
     }
   };
 
-  const mintCelestialWhitelist = async (merkleProof,qty, tokenIds, celestialTypes) => {
-     try {
+  const mintCelestialWhitelist = async (merkleProof, qty, tokenIds, celestialTypes) => {
+    try {
       if (ethereum) {
         const transactionsContract = createNFTContract();
-        let money = PayWhiteList * qty
+        let money = PayWhiteList * qty;
         // console.log("money")
-         
-        const submitMint = await transactionsContract.mintCelestialWhitelist(merkleProof, qty, tokenIds, celestialTypes, { value: ethers.utils.parseEther(money.toString()) });
 
-        console.log(submitMint)
+        const submitMint = await transactionsContract.mintCelestialWhitelist(
+          merkleProof,
+          qty,
+          tokenIds,
+          celestialTypes,
+          { value: ethers.utils.parseEther(money.toString()) }
+        );
+
+        console.log(submitMint);
         setIsLoading(true);
         console.log(`Loading - ${submitMint.hash}`);
         await submitMint.wait();
         console.log(`Success - ${submitMint.hash}`);
-      
+
         for (let j = 0; j < tokenIds.length; j++) {
-          console.log(tokenIds[j])
+          console.log(tokenIds[j]);
           let a = await UpdateToken(tokenIds[j]);
-          console.log(a)
+          console.log(a);
         }
         setIsLoading(false);
-        setSuccess(true)
+        setSuccess(true);
         setTimeout(() => {
-          setSuccess(false)
-        }, 4000)
-        await getTotalSupply()
+          setSuccess(false);
+        }, 4000);
+        await getTotalSupply();
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
-
       console.log(error);
-      alert(error.message)
+      alert(error.message);
       // console.log(error.message);
-      
     }
   };
 
@@ -224,8 +234,7 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createNFTContract();
         const submitMint = await transactionsContract.bachedCelestialsOfOwner(address, page);
 
-        return submitMint
-
+        return submitMint;
       } else {
         console.log("Ethereum is not present");
       }
@@ -238,20 +247,31 @@ export const TransactionsProvider = ({ children }) => {
     try {
       if (ethereum) {
         const transactionsContract = createStakeContract();
-        console.log(createStakeContract)
+        console.log(createStakeContract);
         const submitMint = await transactionsContract.stake(tokenId);
-        console.log(submitMint)
+        console.log(submitMint);
 
         console.log(`Loading - ${submitMint.hash}`);
         await submitMint.wait();
         console.log(`Success - ${submitMint.hash}`);
 
-        return submitMint
-
+        return submitMint;
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
+      if (error.data.message === "execution reverted: ERC721: transfer caller is not owner nor approved") {
+        const transactionsContract = createNFTContract();
+        console.log(createNFTContract);
+        const submitMint = await transactionsContract.setApprovalForAll(stake, true);
+        console.log(submitMint);
+
+        console.log(`Loading - ${submitMint.hash}`);
+        await submitMint.wait();
+        console.log(`Success - ${submitMint.hash}`);
+
+        await Stakenft(tokenId);
+      }
       console.log(error);
     }
   };
@@ -262,18 +282,20 @@ export const TransactionsProvider = ({ children }) => {
         // console.log(createStakeContract)
         const AllCelestial = await transactionsContract.CelestialsOfOwner(address);
 
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
+      console.log(error.errorArgs[0]);
+      if (error.errorArgs[0] === "there is no nft in your balance") {
+        return [];
+      }
       console.log(error);
     }
   };
 
   // ***************************Stack**************
-
 
   const tokenOfOwnerBached = async (address, page) => {
     try {
@@ -281,8 +303,7 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createStakeContract();
         const submitMint = await transactionsContract.tokenOfOwnerBached(address, page);
 
-        return submitMint
-
+        return submitMint;
       } else {
         console.log("Ethereum is not present");
       }
@@ -298,8 +319,7 @@ export const TransactionsProvider = ({ children }) => {
         // console.log(createStakeContract)
         const AllCelestial = await transactionsContract.tokenOfOwner(address);
 
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
@@ -315,8 +335,7 @@ export const TransactionsProvider = ({ children }) => {
         // console.log(createStakeContract)
         const AllCelestial = await transactionsContract.earningInfo(tokenId);
 
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
@@ -333,8 +352,7 @@ export const TransactionsProvider = ({ children }) => {
         // console.log(`Loading - ${AllCelestial.hash}`);
 
         //  console.log(`Success - ${AllCelestial.hash}`);
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
@@ -351,8 +369,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(`Loading - ${AllCelestial.hash}`);
         await AllCelestial.wait();
         console.log(`Success - ${AllCelestial.hash}`);
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
@@ -370,8 +387,7 @@ export const TransactionsProvider = ({ children }) => {
         console.log(`Loading - ${AllCelestial.hash}`);
         await AllCelestial.wait();
         console.log(`Success - ${AllCelestial.hash}`);
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
@@ -388,30 +404,25 @@ export const TransactionsProvider = ({ children }) => {
         console.log(`Loading - ${AllCelestial.hash}`);
         await AllCelestial.wait();
         console.log(`Success - ${AllCelestial.hash}`);
-        return AllCelestial
-
+        return AllCelestial;
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
-
-      console.log(error?.data?.message)
+      console.log(error?.data?.message);
       console.log(error);
-      alert(error?.data?.messag)
+      alert(`${error?.data?.message} - 1000 $Soul needed!`);
     }
   };
 
-
-
-  const Progress = async ( ) => {
-    console.log("Progress")
+  const Progress = async () => {
+    console.log("Progress");
     try {
       if (ethereum) {
         const stackContract = createStakeContract();
         const NftContract = createNFTContract();
         const SoulContract = createSoulContract();
 
-        
         const totalStaked = await stackContract.totalStaked();
         const totalAngleStaked = await stackContract.totalAngleStaked();
         const totalDemonStaked = await stackContract.totalDemonStaked();
@@ -419,84 +430,56 @@ export const TransactionsProvider = ({ children }) => {
 
         const SoulMint = await SoulContract.totalSupply();
 
-
         const AngelsMinted = await NftContract.AngelsMinted();
         const DemonsMinted = await NftContract.DemonsMinted();
         const NephilimsMinted = await NftContract.NephilimsMinted();
         const MintGen0 = await NftContract.totalSupply();
-     
 
-
-        return({
-          totalStaked:coverether(totalStaked),
-          totalAngleStaked:coverether(totalAngleStaked),
-          totalDemonStaked:coverether(totalDemonStaked),
-          totalNephilimStaked:coverether(totalNephilimStaked),
-          AngelsMinted:coverether(AngelsMinted),
-          DemonsMinted:coverether(DemonsMinted),
-          NephilimsMinted:coverether(NephilimsMinted),
-          MintGen0:coverether(MintGen0),
-          SoulMint:(coverether(SoulMint)/(10 ** 18)).toFixed(2),
-        })
-     
-    
-   
+        return {
+          totalStaked: coverether(totalStaked),
+          totalAngleStaked: coverether(totalAngleStaked),
+          totalDemonStaked: coverether(totalDemonStaked),
+          totalNephilimStaked: coverether(totalNephilimStaked),
+          AngelsMinted: coverether(AngelsMinted),
+          DemonsMinted: coverether(DemonsMinted),
+          NephilimsMinted: coverether(NephilimsMinted),
+          MintGen0: coverether(MintGen0),
+          SoulMint: (coverether(SoulMint) / 10 ** 18).toFixed(2),
+        };
 
         // uint256 public AngelsMinted;
         // uint256 public DemonsMinted;
         // uint256 public NephilimsMinted;
-      
+
         // console.log(  coverether(totalStaked));
-        
+
         // console.log(`Loading - ${AllCelestial.hash}`);
         // await AllCelestial.wait();
         // console.log(`Success - ${AllCelestial.hash}`);
         // return AllCelestial
-
       } else {
         console.log("Ethereum is not present");
       }
     } catch (error) {
-
-      console.log(error?.data?.message)
+      console.log(error?.data?.message);
       console.log(error);
-      alert(error?.data?.messag)
+      alert(error?.data?.messag);
     }
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const mintNFT = async (qty, tokenIds, celestialTypes) => {
-
     const API_URL = APIURL;
     const PUBLIC_KEY = currentAccount;
     const PRIVATE_KEY = "39de6f3a77ef5b7c0672886e078e48ecc58d93d780cc43aae3f4060cefb08209";
 
-    let header = { "Access-Control-Allow-Origin": "*" }
+    let header = { "Access-Control-Allow-Origin": "*" };
 
-    let headers = [{
-      name: 'Access-Control-Allow-Origin',
-      value: '*'
-    }];
-
+    let headers = [
+      {
+        name: "Access-Control-Allow-Origin",
+        value: "*",
+      },
+    ];
 
     let web3 = createAlchemyWeb3(API_URL);
     // web3= new web3.providers.HttpProvider(
@@ -511,19 +494,18 @@ export const TransactionsProvider = ({ children }) => {
     //   )
 
     const nftContract = new web3.eth.Contract(contractABI, nft);
-    const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, 'latest'); //get latest nonce
-    console.log(nonce)
-
+    const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
+    console.log(nonce);
 
     const tx = {
       from: currentAccount,
       to: addressTo,
-      'nonce': nonce,
-      'gas': 500000,
+      nonce: nonce,
+      gas: 500000,
       // gas: "0x5208",
-      'maxPriorityFeePerGas': 2999999987,
+      maxPriorityFeePerGas: 2999999987,
       // 'data': nftContract.methods.mintNFT(PUBLIC_KEY, tokenURI).encodeABI()
-      'data': nftContract.methods.mintCelestialWithAVAX(qty, tokenIds, celestialTypes).encodeABI()
+      data: nftContract.methods.mintCelestialWithAVAX(qty, tokenIds, celestialTypes).encodeABI(),
     };
 
     const signedTx = await web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
@@ -531,18 +513,7 @@ export const TransactionsProvider = ({ children }) => {
 
     console.log(`Transaction receipt: ${JSON.stringify(transactionReceipt)}`);
 
-
-
-
-
-
-
-
-
     // const PRIVATE_KEY = "cfb08416e5e9868d772e212916ae37a16e2aeeb1dc54bdc9d1c84a507110ad1b";
-
-
-
 
     // const contract = require("../artifacts/contracts/MyNFT.sol/MyNFT.json");
     // const contractAddress = "0x81c587EB0fE773404c42c1d2666b5f557C470eED";
@@ -564,28 +535,7 @@ export const TransactionsProvider = ({ children }) => {
     //   'maxPriorityFeePerGas': 2999999987,
     //   'data': nftContract.methods.mintNFT(PUBLIC_KEY, tokenURI).encodeABI()
     // };
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  };
 
   const handleChange = (e, name) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
@@ -604,7 +554,7 @@ export const TransactionsProvider = ({ children }) => {
           timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
           message: transaction.message,
           keyword: transaction.keyword,
-          amount: parseInt(transaction.amount._hex) / (10 ** 18)
+          amount: parseInt(transaction.amount._hex) / 10 ** 18,
         }));
 
         console.log(structuredTransactions);
@@ -617,9 +567,6 @@ export const TransactionsProvider = ({ children }) => {
       console.log(error);
     }
   };
-
-
-
 
   const checkIfWalletIsConnect = async () => {
     try {
@@ -644,11 +591,10 @@ export const TransactionsProvider = ({ children }) => {
     try {
       if (ethereum) {
         const transactionsContract = createEthereumContract();
-        const initialP = initial()
+        const initialP = initial();
         // console.log("***********transactionsContract**********")
         // console.log(transactionsContract)
         // console.log(initialP)
-
 
         // const currentTransactionCount = await transactionsContract.getTransactionCount();
 
@@ -661,7 +607,6 @@ export const TransactionsProvider = ({ children }) => {
     }
   };
 
-
   const sendTransaction = async () => {
     try {
       if (ethereum) {
@@ -671,12 +616,14 @@ export const TransactionsProvider = ({ children }) => {
 
         await ethereum.request({
           method: "eth_sendTransaction",
-          params: [{
-            from: currentAccount,
-            to: addressTo,
-            gas: "0x5208",
-            value: parsedAmount._hex,
-          }],
+          params: [
+            {
+              from: currentAccount,
+              to: addressTo,
+              gas: "0x5208",
+              value: parsedAmount._hex,
+            },
+          ],
         });
 
         const transactionHash = await transactionsContract.addToBlockchain(addressTo, parsedAmount, message, keyword);
@@ -737,8 +684,8 @@ export const TransactionsProvider = ({ children }) => {
         unstake,
         getCooldown,
         Progress,
-        error, setError
-
+        error,
+        setError,
       }}
     >
       {children}

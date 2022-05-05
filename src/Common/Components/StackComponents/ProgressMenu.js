@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { TransactionContext } from "../../../context/TransactionContext";
+import { CorrectValue } from "../../../utils/constants";
 function ProgressMenu() {
   const { currentAccount, Progress } = useContext(TransactionContext);
   const [progressRow, setProgressRow] = useState({
@@ -29,10 +30,10 @@ function ProgressMenu() {
       <div className="itemProgressMenu">
         <span className="TitleProgressMenu">Mint</span>
         <div className="descProgressMenu d-flex justify-content-center">
-          <span> Gen0 mint: {progressRow.MintGen0}/10,000</span>
-          <span>Angels minted: {progressRow.AngelsMinted}/8,000</span>
-          <span>Demons minted: {progressRow.DemonsMinted}/1950</span>
-          <span>Nephilims minted: {progressRow.NephilimsMinted}/50</span>
+          <span> Gen0 mint: {CorrectValue(progressRow.MintGen0).toLocaleString()}/10,000</span>
+          <span>Angels minted: {CorrectValue(progressRow.AngelsMinted).toLocaleString()}/8,000</span>
+          <span>Demons minted: {CorrectValue(progressRow.DemonsMinted).toLocaleString()}/1950</span>
+          <span>Nephilims minted: {CorrectValue(progressRow.NephilimsMinted).toLocaleString()}/50</span>
         </div>
         <div className="descProgressMenu d-flex justify-content-center">
           <span>Gen1 mint: 0/15,000</span>
@@ -57,7 +58,7 @@ function ProgressMenu() {
           <span className="TitleProgressMenu flex-center  ">Part1:</span>
           <span style={{ textAlign: "center" }}>
             $Soul minted:{"\n"}
-            {Math.floor(progressRow.SoulMint).toLocaleString()}/100,000,000
+            {CorrectValue(progressRow.SoulMint).toLocaleString()}/100,000,000
           </span>
         </div>
 
@@ -72,9 +73,9 @@ function ProgressMenu() {
         <span className="TitleProgressMenu">Staked</span>
 
         <div className="descProgressMenu d-flex justify-content-center">
-          <span>Total Angels Staked : {progressRow.totalAngleStaked}</span>
-          <span>Total Demons Staked : {progressRow.totalDemonStaked}</span>
-          <span>Total Nephilims Staked : {progressRow.totalNephilimStaked}</span>
+          <span>Total Angels Staked : {CorrectValue(progressRow.totalAngleStaked).toLocaleString()}</span>
+          <span>Total Demons Staked : {CorrectValue(progressRow.totalDemonStaked).toLocaleString()}</span>
+          <span>Total Nephilims Staked : {CorrectValue(progressRow.totalNephilimStaked).toLocaleString()}</span>
         </div>
 
         <div className="descProgressMenu d-flex justify-content-center">
